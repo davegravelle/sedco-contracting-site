@@ -1,0 +1,57 @@
+---
+---
+
+<div class="animated-wrapper">
+  <slot />
+</div>
+
+<style>
+  .animated-wrapper {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animated-wrapper.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Create observer once and reuse it
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      // Add threshold to start animation when element is 10% visible
+      threshold: 0.1,
+      // Add root margin to trigger slightly before element comes into view
+      rootMargin: '50px'
+    }
+  );
+
+  // Observe elements as soon as they're added to the DOM
+  const observeElements = () => {
+    document.querySelectorAll('.animated-wrapper:not([data-observed])')
+      .forEach(wrapper => {
+        observer.observe(wrapper);
+        wrapper.setAttribute('data-observed', 'true');
+      });
+  };
+
+  // Initial observation
+  observeElements();
+
+  // Watch for new elements being added (useful for dynamic content)
+  new MutationObserver(observeElements).observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+</script> 

@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import kitchenImage from "../assets/kitchen-640.jpeg";
+
+import "./Hero.css";
+---
+
+<section 
+    class="hero-bg
+        bg-primary-dark
+        font-sans
+        text-primary
+        relative
+    "
+>
+    <div class="gradient-overlay absolute top-0 left-0 h-full w-full"></div>
+    <div 
+        class="
+            grid 
+            sm:grid-cols-2 
+            gap-8 
+            items-center 
+            relative 
+            z-10"
+    >
+        <!-- Left Column -->
+        <div class="text-left space-y-6 p-6">
+            <h1 class="text-4xl md:text-6xl font-bold drop-shadow-xl">Sedco Contracting</h1>
+            <h2 class="text-xl md:text-2xl font drop-shadow-xl">Your trusted partner for home remodeling needs</h2>
+            <!-- <p class="text-lg drop-shadow-xl">
+                Trusted partner for your home remodeling needs.
+            </p> -->
+            <a
+                href="/contact"
+                class="inline-block
+                drop-shadow-xl
+                bg-cta
+                text-black
+                text-lg
+                font-bold
+                p-3
+                rounded
+                hover:scale-105
+                "
+            >
+                Get in Touch!
+            </a>
+        </div>
+
+        <!-- Right Column -->
+        <div class="block relative size-full lg:h-full min-h-[320px] max-w-[640px] lg:min-h-[480px]">
+            <div class="absolute inset-0 overflow-hidden">
+                <Image
+                    src={kitchenImage}
+                    alt=""
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+    </div>
+</section>
+                   

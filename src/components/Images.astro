@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import AnimatedWrapper from "./AnimatedWrapper.astro";
+import bathroom1 from "../assets/bathroom1-640.jpeg";
+import bathroom2 from "../assets/bathroom2-480.jpeg";
+import fireplace1 from "../assets/fireplace1-360.jpg";
+import fireplace2 from "../assets/fireplace2-480.jpeg";
+---
+
+<section class="bg-white p-8">
+  <div class="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="col-span-1 flex justify-center">
+      <AnimatedWrapper>
+        <Image src={fireplace2} alt="" class="w-max h-full object-cover" />
+      </AnimatedWrapper>
+    </div>
+    <div class="col-span-1 flex justify-center">
+      <AnimatedWrapper>
+        <Image src={bathroom2} alt="" class="w-max h-full object-cover" />
+      </AnimatedWrapper>
+    </div>
+    <div class="col-span-1 flex justify-center">
+      <AnimatedWrapper>
+        <Image src={fireplace1} alt="" class="w-max h-full object-cover" />
+      </AnimatedWrapper>
+    </div>
+  </div>
+  <div class="py-4 flex justify-center">
+    <AnimatedWrapper>
+      <Image src={bathroom1} alt="" class="w-max h-max object-cover" />
+    </AnimatedWrapper>
+  </div>
+</section>

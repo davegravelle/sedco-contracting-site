@@ -1,0 +1,71 @@
+---
+import Drawer from "./Drawer.astro";
+import HomeIcon from "./icons/HomeIcon.astro";
+const { className, navLinks } = Astro.props;
+---
+
+<header class={`${className} bg-white shadow-md`}>
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo and Site Name -->
+      <div class="flex items-center">
+        <span class="mr-4">
+            <HomeIcon />
+        </span>
+      </div>
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex space-x-4">
+        <ul class="flex">
+          {navLinks.map((link: { href: string; text: string }) => (
+            <li class="p-2 m-2">
+              <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button class="text-primary-dark focus:outline-none" id="open-drawer">
+          <!-- Icon for mobile menu (e.g., hamburger icon) -->
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <Drawer isOpen={false} navLinks={navLinks} />
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const openButton = document.getElementById('open-drawer');
+    const closeButton = document.getElementById('close-drawer');
+    const openDrawer = () => {
+      if (drawer && overlay) {
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+      }
+    };
+    const closeDrawer = () => {
+      if (drawer && overlay) {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+      }
+    };
+
+    if (openButton) {
+      openButton.addEventListener('click', openDrawer);
+    }
+    if (closeButton) {
+      closeButton.addEventListener('click', closeDrawer);
+    }
+    if (overlay) {
+      overlay.addEventListener('click', closeDrawer);
+    }
+  });
+</script>

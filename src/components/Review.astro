@@ -1,0 +1,12 @@
+---
+import AnimatedWrapper from "./AnimatedWrapper.astro";
+
+const { review } = Astro.props;
+---
+<AnimatedWrapper>
+    <div class="max-w mt-8 mb-8">
+      <h3 class="font-bold mt-4 mb-4">{review.title}</h3>
+      <p>{review.content}</p>
+      <p class="italic mt-4">- {review.signature}</p>
+    </div>
+  </AnimatedWrapper>

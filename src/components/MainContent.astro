@@ -1,0 +1,13 @@
+---
+interface Props {
+    class?: string;
+}
+const defaultClasses = 'min-h-full'
+const { class: className } = Astro.props;
+---
+<style>
+    .main { min-height: calc(100vh - 200px) }
+</style>
+<main class={`main  ${defaultClasses} ${className}`}>
+    <slot />
+</main> 

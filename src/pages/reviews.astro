@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnimatedWrapper from '../components/AnimatedWrapper.astro';
+import MainContent from '../components/MainContent.astro';
+
+type Review = {
+  title: string;
+  content: string;
+  signature: string;
+};
+
+const reviews: Review[] = [
+  {
+    title: 'Kitchen Renovation',
+    content: "I was very impressed with the work Sedco did on our kitchen. we absolutely love the new cabinets they installed for us and the tile work is flawless. Very professional and skilled workers!",
+    signature: 'Alex '
+  },
+  {
+    title: 'Home Renovation',
+    content: "When half of our roof blew off two years ago during a terrible storm, two out of four of our building's dwellings were totally destroyed all the way down to the basement. All of the walls, ceilings, floors, EVERYTHING, had to be gutted and redone. Joe and his company did an outstanding job in a very timely fashion. Everything looks better than it did before and the tenants were very pleased, as were we. This was a very stressful circumstance as tenants had to be relocated and things were held up by insurance (as always) but Joey's professionalism and artistic eye helped us through it. I highly recommend Sedco for your construction needs",
+    signature: 'Grace and Vincent Cardiello'
+  },
+  {
+    title: '3rd Floor House Renovation',
+    content: "Joe and Sedco Contracting did an amazing job on our 3rd floor renovation. We couldn't be happier with all the effort that went into our home. Thanks for everything!",
+    signature: 'Julie Frattarola'
+  },
+  {
+    title: 'Fantastic job on our bathroom!',
+    content: "I'm very pleased with the way Joe's team renovated our bathroom. One of the most professional contractors we''ve had. They were always punctual and kept my husband and me informed about progress of work. I always felt part of the project from beginning to end and we'd definitely recommend Sedco as well as work with them again. Thanks for a job well done! ",
+    signature: 'Marie'
+  }
+];
+
+---
+
+<Layout title="Reviews">
+  <MainContent class="bg-accent-light max-w-4xl mx-auto px-4 pt-8 pb-8">
+    <AnimatedWrapper>
+      <h1 class="text-4xl text-primary-dark font-bold text-center mb-8">See what our customers are saying</h1>
+    </AnimatedWrapper>
+
+    <div class="">
+      <AnimatedWrapper>
+        <section
+            class="
+                text-primary-dark
+                p-8"
+        >
+        <div class="grid grid-flow-row">
+          {
+            reviews.map((r: Review) => (
+              <AnimatedWrapper>
+                <div class="max-w mt-8 mb-8">
+                  <h3 class="font-bold mt-4 mb-4">{r.title}</h3>
+                  <p>{r.content}</p>
+                  <p class="italic mt-4">- {r.signature}</p>
+                </div>
+              </AnimatedWrapper>
+            ))
+          }
+        </div>
+      </AnimatedWrapper>
+    </div>
+  </MainContent>
+</Layout> 

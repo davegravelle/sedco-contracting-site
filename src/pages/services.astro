@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnimatedWrapper from '../components/AnimatedWrapper.astro';
+import MainContent from '../components/MainContent.astro';
+
+const servicesList: string[] = [    
+    "Sheetrock",
+    "Tiling",
+    "Flooring",
+    "Finish Carpentry",
+    "Painting",
+    "Siding",
+    "Windows & Doors",
+    "Basements & Attics",
+    "Fireplaces",
+    "Decks & Porches",
+    "Home Additions",
+];
+---
+
+<Layout title="Services">
+  <MainContent class="max-w-4xl mx-auto px-4 py-8 bg-accent-light px-4 pt-8 pb-8">
+    <section>
+        <AnimatedWrapper>
+          <h1 class="text-4xl text-primary-dark font-bold mb-12">Our Services</h1>
+        </AnimatedWrapper>
+    
+        <div class="max-w-4xl mx-auto">
+          <AnimatedWrapper>
+            <div class="space-y-6">
+              <p class="text-primary-dark">
+                We specialize in <span class="font-bold">affordable kitchens</span> and <span class="font-bold">bathrooms</span> and offer the following services:
+              </p>
+              <ul class="list-disc list-inside text-primary-dark mt-4">
+                {servicesList.map(service => (
+                  <li>{service}</li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedWrapper>
+        </div>
+    </section>
+    <section class="mt-16">
+        <AnimatedWrapper>
+            <h2 class="text-3xl text-primary-dark font-bold mb-12">Our Process</h1>
+        </AnimatedWrapper>
+      
+        <div class="max-w-4xl mx-auto">
+          <AnimatedWrapper>
+            <div class="space-y-6">
+              <p class="text-primary-dark">
+                We offer comprehensive cybersecurity solutions tailored to your needs. 
+                Our services include security assessments, penetration testing, 
+                and continuous monitoring to protect your digital assets.
+              </p>
+            </div>
+          </AnimatedWrapper>
+        </div>
+    </section>
+  </MainContent>
+</Layout> 

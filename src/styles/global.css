@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: rgb(0, 0, 128);
+        --primary-dark: rgb(22, 24, 67);
+        --primary-light: rgb(33, 86, 200);
+        --accent: rgb(127, 117, 108);
+        --accent-light: rgb(225, 225, 225);
+        --cta: rgb(227, 142, 73);
+
+        --font-family: 'Serif';
+    }
+}
