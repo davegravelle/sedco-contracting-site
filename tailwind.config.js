@@ -12,6 +12,9 @@ export default {
         cta: "var(--cta)",
         "cta-hover": "var(--cta-hover)",
       },
+      border: {
+        primary: "var(--primary)",
+      },
       fontFamily: {
         serif: ["Merriweather", "serif"],
         title: "",
