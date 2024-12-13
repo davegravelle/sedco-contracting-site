@@ -1,27 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import AnimatedWrapper from '../components/AnimatedWrapper.astro';
-import ContactForm from '../components/ContactForm.astro';
-import MainContent from '../components/MainContent.astro';
+import Layout from "../layouts/Layout.astro";
+import AnimatedWrapper from "../components/AnimatedWrapper.astro";
+import ContactForm from "../components/ContactForm.astro";
+import MainContent from "../components/MainContent.astro";
 ---
 
 <Layout title="Contact">
   <MainContent class="max-w-4xl mx-auto px-4 pt-8 pb-8">
     <AnimatedWrapper>
-      <h1 class="text-4xl text-primary-dark font-bold text-center mb-12">Contact Us</h1>
+      <h1 class="text-4xl text-primary-dark font-bold text-center mb-12">
+        Contact Us
+      </h1>
     </AnimatedWrapper>
 
     <div class="max-w-lg mx-auto">
       <AnimatedWrapper>
-        <div class="space-y-6">
-          <p class="text-primary-dark text-center mb-8">
-            Have a question about our services or would like a quote? We'd love to hear from you!
+        <div class="space-y-3 mb-8">
+          <p class="text-primary-dark text-center">
+            Have a question about our services or would like a quote?
+             <br /> 
+             We'd love to hear from you!
           </p>
-          <p class="text-primary-dark text-center mb-8">
-            Fill out the form below and we'll get back to you as soon as possible.
+          <p class="text-primary-dark text-center">
+            Fill out the form below and we'll get back to you as soon as
+            possible.
           </p>
-          <ContactForm />
         </div>
+        <ContactForm />
       </AnimatedWrapper>
     </div>
   </MainContent>

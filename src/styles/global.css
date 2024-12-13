@@ -9,7 +9,8 @@
         --primary-light: rgb(33, 86, 200);
         --accent: rgb(127, 117, 108);
         --accent-light: rgb(225, 225, 225);
-        --cta: rgb(227, 142, 73);
+        --cta: rgb(252, 163, 17);
+        --cta-hover: rgb(238, 125, 33);
 
         --font-family: 'Serif';
     }

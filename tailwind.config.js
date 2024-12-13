@@ -10,6 +10,7 @@ export default {
         accent: "var(--accent)",
         "accent-light": "var(--accent-light)",
         cta: "var(--cta)",
+        "cta-hover": "var(--cta-hover)",
       },
       fontFamily: {
         serif: ["Merriweather", "serif"],
