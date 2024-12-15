@@ -8,31 +8,22 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
-const navLinks = [
-//   { href: "/", text: "Home" },
-//   { href: "/services", text: "Services" },
-//   { href: "/reviews", text: "Reviews" },
-//   { href: "/about", text: "About" },
-  { href: "/contact", text: "Contact" },
-];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Sedco Companies" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>Sedco Companies: {title}</title>
 	</head>
 	<body class="bg-white">
 		<Header
 			className=""
 			siteName="Secdo"
-			navLinks={navLinks}
 		/>
 		<slot />
 		<Footer />

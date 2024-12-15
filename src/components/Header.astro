@@ -1,20 +1,28 @@
 ---
 import Drawer from "./Drawer.astro";
 import HomeIcon from "./icons/HomeIcon.astro";
-const { className, navLinks } = Astro.props;
+const { className } = Astro.props;
+
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/services", text: "Services" },
+  // { href: "/products", text: "Products" },
+  { href: "/about", text: "About" },
+  { href: "/contact", text: "Contact" },
+];
 ---
 
-<header class={`${className} bg-white shadow-md`}>
+<header class={`relative z-10 ${className} bg-white shadow-md`}>
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
       <!-- Logo and Site Name -->
       <div class="flex items-center">
-        <!-- <a href="/" class="mr-4"> -->
+        <a href="/" class="mr-4">
             <HomeIcon />
-        <!-- </a> -->
+        </a>
       </div>
       <!-- Navigation Links -->
-      <!-- <nav class="hidden md:flex space-x-4">
+      <nav class="hidden md:flex space-x-4">
         <ul class="flex">
           {navLinks.map((link: { href: string; text: string }) => (
             <li class="p-2 m-2">
@@ -24,9 +32,9 @@ const { className, navLinks } = Astro.props;
             </li>
           ))}
         </ul>
-      </nav> -->
+      </nav>
       <!-- Mobile Menu Button -->
-<!-- 
+
       <div class="md:hidden">
         <button class="text-primary-dark focus:outline-none" id="open-drawer">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +42,7 @@ const { className, navLinks } = Astro.props;
           </svg>
         </button>
       </div>
-       -->
+      
     </div>
   </div>
   <Drawer isOpen={false} navLinks={navLinks} />
