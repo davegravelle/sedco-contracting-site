@@ -1,61 +1,76 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import AnimatedWrapper from '../components/AnimatedWrapper.astro';
-import MainContent from '../components/MainContent.astro';
+import Layout from "../layouts/Layout.astro";
+import AnimatedWrapper from "../components/AnimatedWrapper.astro";
+import MainContent from "../components/MainContent.astro";
+import Service from "../components/Service.astro";
 
-const servicesList: string[] = [    
-    "Sheetrock",
-    "Tiling",
-    "Flooring",
-    "Finish Carpentry",
-    "Painting",
-    "Siding",
-    "Windows & Doors",
-    "Basements & Attics",
-    "Fireplaces",
-    "Decks & Porches",
-    "Home Additions",
+const remodelingInteriorServices: string[] = [
+  "Bathrooms",
+  "Kitchens",
+  "Basements",
+  "Fireplaces",
+  "Single room renovations",
+];
+
+const remodelingExteriorServices: string[] = [
+  "Decks",
+  "Porches",
+  "Sidewalks",
+  "Patios",
+  "Retaining Walls",
+  "Garages",
+];
+
+const landscapingServices: string[] = [
+  "Maintenance",
+  "Installations",
+  "Mulching",
+  "Lot maintenance",
+];
+
+const snowRemovalServices: string[] = [
+  "24 hour sidewalk and lot plowing service",
+  "Post storm snow removal",
+  "Sidewalk and lot salting",
+];
+
+const serviceSections = [
+  {
+    id: "remodeling",
+    title: "Remodeling",
+    body: "In order to provide turn key service with proper quality control and communication we have 4 in-house specialized teams to complete your project, Demo, Carpentry & Masonry, Drywall & Paint, and Tile. We offer the following interior remodeling projects:",
+    servicesList: remodelingInteriorServices,
+  },
+  {
+    id: "exteriorRemodeling",
+    title: "Exterior Remodeling",
+    body: "We offer the following exterior remodeling projects.",
+    servicesList: remodelingExteriorServices,
+  },
+  {
+    id: "landscaping",
+    title: "Commercial Landscaping",
+    body: "",
+    servicesList: landscapingServices,
+  },
+  {
+    id: "snowRemoval",
+    title: "Commercial Snow Removal",
+    body: "",
+    servicesList: snowRemovalServices,
+  },
 ];
 ---
 
 <Layout title="Services">
-  <MainContent class="max-w-4xl mx-auto px-4 py-8 bg-accent-light px-4 pt-8 pb-8">
-    <section>
-        <AnimatedWrapper>
-          <h1 class="text-4xl text-primary-dark font-bold mb-12">Our Services</h1>
-        </AnimatedWrapper>
-    
-        <div class="max-w-4xl mx-auto">
-          <AnimatedWrapper>
-            <div class="space-y-6">
-              <p class="text-primary-dark">
-                We specialize in <span class="font-bold">affordable kitchens</span> and <span class="font-bold">bathrooms</span> and offer the following services:
-              </p>
-              <ul class="list-disc list-inside text-primary-dark mt-4">
-                {servicesList.map(service => (
-                  <li>{service}</li>
-                ))}
-              </ul>
-            </div>
-          </AnimatedWrapper>
-        </div>
-    </section>
-    <section class="mt-16">
-        <AnimatedWrapper>
-            <h2 class="text-3xl text-primary-dark font-bold mb-12">Our Process</h1>
-        </AnimatedWrapper>
-      
-        <div class="max-w-4xl mx-auto">
-          <AnimatedWrapper>
-            <div class="space-y-6">
-              <p class="text-primary-dark">
-                We offer comprehensive cybersecurity solutions tailored to your needs. 
-                Our services include security assessments, penetration testing, 
-                and continuous monitoring to protect your digital assets.
-              </p>
-            </div>
-          </AnimatedWrapper>
-        </div>
-    </section>
+  <MainContent class="max-w-4xl mx-auto px-4 py-8 bg-accent-light pt-8 pb-8">
+    <AnimatedWrapper>
+      <h1 class="text-4xl text-primary-dark font-bold mb-12">Our Services</h1>
+    </AnimatedWrapper>
+    {serviceSections.map(({ id, title, body, servicesList }) => (
+      <section id={id}>
+        <Service title={title} body={body} servicesList={servicesList} />
+      </section>
+    ))}
   </MainContent>
-</Layout> 
+</Layout>

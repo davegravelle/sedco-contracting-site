@@ -1,0 +1,24 @@
+---
+import AnimatedWrapper from './AnimatedWrapper.astro';
+interface Props {
+  title: string;
+  body: string;
+  servicesList: string[];
+}
+
+const { title, body, servicesList } = Astro.props;
+---
+
+<AnimatedWrapper>
+  <div class="max-w-4xl mx-auto mb-16">
+    <div class="space-y-6">
+      <h2 class="text-3xl text-primary-dark font-semibold">{title}</h2>
+      <p class="text-primary-dark">{body}</p>
+      <ul class="list-disc list-inside text-primary-dark mt-4 mb-4 max-w-[640px] grid grid-cols-2">
+        {servicesList.map((service) => (
+          <li class="grid-col-1">{service}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</AnimatedWrapper> 
