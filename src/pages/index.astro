@@ -8,37 +8,45 @@ import Review from "../components/Review.astro";
 import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Card from "../components/Card.astro";
+import { getImage } from "astro:assets";
 
-const review = {
-  title: "Kitchen Renovation",
-  content:
-    "I was very impressed with the work Sedco did on our kitchen. we absolutely love the new cabinets they installed for us and the tile work is flawless. Very professional and skilled workers!",
-  signature: "Alex ",
-};
+// Import images directly
+import image1 from "../assets/kitchen-640.jpeg";
+import image2 from "../assets/landscaping1-640.jpg";
 
 const cards = [
   {
     title: "Commercial & Residential Remodeling",
     subtitle: "Sedco Contracting",
-    body: "This is the body of card 1.",
-    href: "#",
-    imgHref: "https://placehold.co/300x200",
+    list: [
+      "Bathrooms",
+      "Kitchens",
+      "Basements",
+      "Single room renovations ",
+      "Fireplaces ",
+    ],
+    href: "/services#remodeling",
+    imgSrc: image1,
   },
   {
-    title: "Commercial Landscaing & Snow Removal",
+    title: "Commercial Landscaping & Snow Removal",
     subtitle: "Sedco Property Management",
-    body: "This is the body of card 2.",
-    href: "#",
-    imgHref: "https://placehold.co/300x200",
+    list: [
+      "24 hour snow sidewalk and lot plowing service",
+      "Post storm snow removal",
+      "Sidewalk and lot salting",
+    ],
+    href: "/services#snowRemoval",
+    imgSrc: image2,
   },
 ];
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Home">
   <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
-    <Hero />
-    <!--     
-    <section class="bg-accent-light text-center text-primary-dark p-8 w-full">
+    <!-- <Hero /> -->
+
+    <!-- <section class="bg-accent-light text-center text-primary-dark p-8 w-full">
       <div class="max-w-screen-lg mx-auto">
        <h2 class="text-2xl mb-8"> We specialize in <span class="font-bold">affordable kitchens</span> and <span class="font-bold">bathrooms</span></h2>
         <p class="mb-8">Established in 2003, Sedco Contracting LLC provides construction and remodeling services for all residential and commercial sectors in Northern and Central New Jersey. We specialize in kitchen and bathroom renovation while offering a wide range of other home remodeling services such as home additions, basement remodeling, porches, and siding.</p>
@@ -46,9 +54,9 @@ const cards = [
       </div>
     </section>
      -->
-<!--     
-    <section class="py-12 px-4 bg-white text-primary-dark">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+    <section class="p-8 bg-white">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
           cards.map((card) => (
             <div class="flex justify-center">
@@ -57,10 +65,10 @@ const cards = [
           ))
         }
       </div>
-    </section> -->
+    </section>
 
-    <section class="p-4 sm:p-8 bg-white">
-      <h1 class="text-2xl text-center font-bold text-primary-dark mb-8">
+    <section class="p-8 sm:p-8 bg-white">
+      <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
         Get In Touch!
       </h1>
       <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
