@@ -3,15 +3,15 @@ const { isOpen, navLinks } = Astro.props;
 ---
 
 <div
-  class={`fixed z-10 inset-0 bg-black bg-opacity-50 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+  class={`fixed z-20 inset-0 bg-black bg-opacity-50 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
   id="drawer-overlay"
 >
 </div>
 <div
-  class={`fixed z-40 top-0 right-0 w-64 bg-white h-full shadow-lg transform transition-transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+  class={`fixed z-50 top-0 right-0 w-64 bg-white h-full shadow-lg transform transition-transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
   id="drawer"
 >
-  <button class="absolute top-4 right-4 text-primary-dark" id="close-drawer">
+  <button class="absolute top-4 right-4 text-primary-dark" aria-label="toggle drawer" id="close-drawer">
     <!-- Close Icon -->
     <svg
       class="h-6 w-6"
@@ -27,7 +27,7 @@ const { isOpen, navLinks } = Astro.props;
         d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
-  <nav class="mt-16 space-y-4">
+  <nav class="mt-16 space-y-4 z-50">
     {
       navLinks.map((link: { href: string; text: string }) => (
         <a
