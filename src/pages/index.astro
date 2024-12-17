@@ -16,25 +16,27 @@ import image2 from "../assets/landscaping1-640.jpg";
 
 const cards = [
   {
-    title: "Commercial & Residential Remodeling",
-    subtitle: "Sedco Contracting",
+    subtitle: "Commercial and residential remodeling",
+    title: "Sedco Contracting LLC",
     list: [
-      "Bathrooms",
       "Kitchens",
-      "Basements",
-      "Single room renovations ",
-      "Fireplaces ",
+      "Bathrooms",
+      "Fireplaces",
+      "Decks & Porches",
+      "Garages",
     ],
     href: "/services#remodeling",
     imgSrc: image1,
   },
   {
-    title: "Commercial Landscaping & Snow Removal",
-    subtitle: "Sedco Property Management",
+    title: "Sedco Property Maintenance LLC",
+    subtitle: "Commercial landscaping and snow removal ",
     list: [
-      "24 hour snow sidewalk and lot plowing service",
-      "Post storm snow removal",
-      "Sidewalk and lot salting",
+      "Lawn maintenance",
+      "Landscaping",
+      "Hardscaping",
+      "Snow plowing & removal",
+      "Ice management",
     ],
     href: "/services#snowRemoval",
     imgSrc: image2,
@@ -55,7 +57,7 @@ const cards = [
     </section>
      -->
 
-    <section class="p-8 bg-white">
+    <section class="px-4 py-8 sm:p-8 bg-white">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
           cards.map((card) => (
@@ -67,7 +69,7 @@ const cards = [
       </div>
     </section>
 
-    <section class="p-8 sm:p-8 bg-white">
+    <section class="px-4 py-8 sm:p-8 bg-white">
       <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
         Get In Touch!
       </h1>
