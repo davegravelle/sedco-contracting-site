@@ -20,14 +20,14 @@ const navLinks = [
       <!-- Logo and Site Name -->
       <div class="flex items-center">
         <a href="/" class="mr-4" aria-label="Home">
-            <HomeIcon />
+            <HomeIcon className="max-w-full" />
         </a>
       </div>
       <!-- Navigation Links -->
       <nav class="hidden md:flex space-x-4">
         <ul class="flex">
           {navLinks.map((link: { href: string; text: string }) => (
-            <li class="p-2 m-2">
+            <li class="p-2 lg:m-2 whitespace-nowrap">
               <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
                 {link.text}
               </a>
