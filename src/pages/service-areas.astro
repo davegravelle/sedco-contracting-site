@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MainContent from "../components/MainContent.astro";
+
+const serviceAreas = [
+  "Rutherford",
+  "East Rutherford",
+  "Wood-Ridge",
+  "Hasbrouck Heights",
+  "Wallington",
+  "Lyndhurst",
+  "Nutley",
+  "Clifton"
+];
+---
+
+<style>
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<Layout title="Service Areas">
+  <MainContent class="max-w-4xl mx-auto px-4 pt-8 pb-8 bg-accent-light">
+    <h1 class="text-4xl text-primary-dark font-bold text-center mb-12">
+      Our Service Areas
+    </h1>
+    <div class="grid sm:grid-cols-2 md:grid-cols-2 gap-8">
+      <div class="col-span-1">
+        <p class="text-primary-dark mb-4">
+          We proudly serve the following areas with our top-notch services. Our team is equipped to handle projects in various locations, ensuring quality and efficiency.
+        </p>
+        <ul class="list-disc list-inside">
+          {serviceAreas.map((area) => (
+            <li>{area}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="col-span-1 relative">
+        <div id="map-loading" class="absolute inset-0 flex items-center justify-center bg-white">
+          <div class="spinner"></div>
+        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.870104938839!2d-74.1083486845931!3d40.82648997931907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2fefb5b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sRutherford%2C%20NJ%2007070%2C%20USA!5e0!3m2!1sen!2s!4v1616161616161!5m2!1sen!2s"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          class="max-w-full mx-auto"
+          onload="document.getElementById('map-loading').style.display = 'none'"
+        ></iframe>
+      </div>
+    </div>
+  </MainContent>
+</Layout> 
