@@ -1,0 +1,57 @@
+---
+interface Props {
+  images: ImageMetadata[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="grid gap-4">
+  <div>
+    <img 
+      id="featured-image"
+      class="h-fit w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
+      src={images[0].src}
+      alt=""
+    />
+  </div>
+  <div class="grid grid-cols-4 gap-4">
+    {images.map((image, index) => (
+      <div>
+        <img
+          src={image.src}
+          class={`object-cover object-center max-w-full rounded-lg cursor-pointer hover:opacity-75 transition-opacity duration-200 ${index === 0 ? 'ring-2 ring-primary-dark' : ''}`}
+          alt=""
+          data-index={index}
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initializeGallery() {
+    const featuredImage = document.getElementById('featured-image') as HTMLImageElement;
+    const thumbnails = document.querySelectorAll('[data-index]') as NodeListOf<HTMLImageElement>;
+    let currentActive = thumbnails[0];
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        // Update featured image
+        featuredImage.src = thumb.src;
+        featuredImage.alt = thumb.alt;
+
+        // Update active thumbnail styling
+        currentActive.classList.remove('ring-2', 'ring-primary-dark');
+        thumb.classList.add('ring-2', 'ring-primary-dark');
+        currentActive = thumb;
+      });
+    });
+  }
+
+  // Initialize on page load
+  initializeGallery();
+
+  // Re-initialize on view transitions
+  document.addEventListener('astro:page-load', initializeGallery);
+</script> 

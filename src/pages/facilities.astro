@@ -1,13 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import MainContent from "../components/MainContent.astro";
+
+import facility1 from "../assets/facility1-480.jpg";
+import facility2 from "../assets/facility2-480.jpg";
+import facility3 from "../assets/facility3-480.jpg";
+import facility4 from "../assets/facility4-480.jpg";
+
+const facilityImages = [facility1, facility2, facility3, facility4];
 ---
 
 <Layout title="Facilities">
   <MainContent class="max-w-4xl mx-auto px-4 py-8 bg-accent-light pt-8 pb-8">
-    <h1 class="text-4xl text-primary-dark font-bold mb-12">Facilities & Equipment</h1>
-    <p class="text-primary-dark">
-      In order to provide a consistent quality product efficiently, we believe it is essential to provide our teams with all the materials and equipment they need at their fingertips. As a result, each team has a truck specifically equipped with the tools and materials needed for their specialty. In addition, each team has daily access to Sedco's fully stocked warehouse, Sedco's support vehicles and machinery, Sedco's mason/landscape yard, and Sedco's wood-working shop.
-    </p>
+
+    <section>
+      <h1 class="text-4xl text-primary-dark font-bold mb-12">
+        Facilities & Equipment
+      </h1>
+      <p class="text-primary-dark">
+        In order to provide a consistent quality product efficiently, we
+        believe it is essential to provide our teams with all the materials
+        and equipment they need at their fingertips. As a result, each team
+        has a truck specifically equipped with the tools and materials needed
+        for their specialty. In addition, each team has daily access to
+        Sedco's fully stocked warehouse, Sedco's support vehicles and
+        machinery, Sedco's mason/landscape yard, and Sedco's wood-working
+        shop.
+      </p>
+    </section>
+
+    <div class="grid grid-cols-2 gap-4 mt-8">
+      {facilityImages.map((image) => (
+        <div class="flex justify-center">
+          <img src={image.src} class="w-full h-auto" />
+        </div>
+      ))}
+    </div>
   </MainContent>
-</Layout> 
+</Layout>
