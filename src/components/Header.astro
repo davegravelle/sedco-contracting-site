@@ -7,9 +7,14 @@ const navLinks = [
   { href: "/", text: "Home" },
   { href: "/about", text: "About Us" },
   { href: "/facilities", text: "Facilities" },
-  // { href: "/services", text: "Services" },
-  { href: "/service-areas", text: "Service Areas" },
-  // { href: "/products", text: "Products" },
+  {
+    href: "/services",
+    text: "Services",
+    subnav: [
+      { href: "/services", text: "Services" },
+      { href: "/service-areas", text: "Service areas" },
+    ],
+  },
   { href: "/contact", text: "Contact Us" },
 ];
 ---
@@ -26,11 +31,22 @@ const navLinks = [
       <!-- Navigation Links -->
       <nav class="hidden md:flex space-x-4">
         <ul class="flex">
-          {navLinks.map((link: { href: string; text: string }) => (
-            <li class="p-2 lg:m-2 whitespace-nowrap">
+          {navLinks.map((link) => (
+            <li class="relative group p-2 lg:m-2 whitespace-nowrap">
               <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
                 {link.text}
               </a>
+              {link.subnav && (
+                <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded">
+                  {link.subnav.map((sublink) => (
+                    <li>
+                      <a href={sublink.href} class="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100">
+                        {sublink.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

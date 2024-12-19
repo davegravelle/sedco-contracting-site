@@ -28,20 +28,27 @@ const { isOpen, navLinks } = Astro.props;
     </svg>
   </button>
   <nav class="mt-16 space-y-4 z-50">
-    {
-      navLinks.map((link: { href: string; text: string }) => (
+    {navLinks.map((link) => (
+      <div>
         <a
           href={link.href}
-          class="block 
-            px-4 
-            py-2 
-            text-primary-dark 
-            hover:underline
-          "
+          class="block px-4 py-2 text-primary-dark hover:underline"
         >
           {link.text}
         </a>
-      ))
-    }
+        {link.subnav && (
+          <div class="ml-4 space-y-2">
+            {link.subnav.map((sublink) => (
+              <a
+                href={sublink.href}
+                class="block px-4 py-2 text-sm text-primary-dark hover:underline"
+              >
+                {sublink.text}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
   </nav>
 </div>
