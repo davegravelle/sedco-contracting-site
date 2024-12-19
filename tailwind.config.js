@@ -16,8 +16,8 @@ export default {
         primary: "var(--primary)",
       },
       fontFamily: {
+        title: ['var(--font-title)', 'Felix'],
         serif: ["Merriweather", "serif"],
-        title: "",
       },
       textColor: {
         primary: "white",

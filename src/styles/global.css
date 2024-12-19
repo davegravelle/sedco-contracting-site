@@ -2,16 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Register your custom font family and tell the browser where to find it. */
+@font-face {
+    font-family: 'Felix Titling';
+    src: url('/fonts/Felixi.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
 @layer base {
     :root {
         --primary: rgb(0, 0, 128);
-        --primary-dark: rgb(22, 24, 67);
+        --primary-dark: #161843;
         --primary-light: rgb(33, 86, 200);
-        --accent: rgb(127, 117, 108);
-        --accent-light: rgb(225, 225, 225);
+        --accent: rgb(120, 120, 117);
+        --accent-light: rgb(234, 233, 236);
+        --accent-brown: rgb(126, 120, 112);
+        --accent-slate: #8494ac;
         --cta: rgb(252, 163, 17);
         --cta-hover: rgb(238, 125, 33);
 
-        --font-family: 'Serif';
+        --font-title: 'Felix Titling';
     }
 }
