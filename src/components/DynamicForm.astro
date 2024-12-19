@@ -1,0 +1,139 @@
+---
+export interface InputConfig {
+  type: 'text' | 'email' | 'number' | 'tel' | 'select' | 'textarea';
+  name: string;
+  label: string;
+  required?: boolean;
+  options?: { value: string; label: string }[]; // Only for select type
+}
+
+interface Props {
+  inputs: InputConfig[];
+}
+
+const { inputs } = Astro.props;
+---
+
+<div class="form-container">
+  <form
+    id="dynamicForm"
+    name="dynamic"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    class="max-w-lg mx-auto p-4 bg-accent-light rounded"
+  >
+    <input type="hidden" name="form-name" value="dynamic" />
+
+    <p class="hidden">
+      <label>
+        Don't fill this out if you're human: <input name="bot-field" />
+      </label>
+    </p>
+
+    {inputs.map(input => (
+      <div class="mb-4">
+        <label for={input.name} class="block text-sm font-bold mb-2 text-primary-dark">
+          {input.label}
+        </label>
+        {(
+            input.type === 'text' 
+            || input.type === 'email'
+            || input.type === 'tel'
+            || input.type === 'number'
+        ) ? (
+          <input
+            type={input.type}
+            id={input.name}
+            name={input.name}
+            required={input.required}
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        ) : input.type === 'select' ? (
+          <select
+            id={input.name}
+            name={input.name}
+            required={input.required}
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="" disabled selected>Select an option</option>
+            {input.options?.map(option => (
+              <option value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        ) : input.type === 'textarea' ? (
+          <textarea
+            id={input.name}
+            name={input.name}
+            required={input.required}
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        ) : null}
+      </div>
+    ))}
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-cta hover:bg-cta-hover shadow-sm hover:shadow text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors ease-in duration-150"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+
+  <div
+    id="successMessage"
+    class="hidden max-w-lg mx-auto mt-16 p-4 bg-green-100 text-green-700 rounded"
+  >
+    <h3 class="font-bold">Thank you!</h3>
+    <p>We'll get back to you as soon as possible.</p>
+  </div>
+
+  <div
+    id="errorMessage"
+    class="hidden max-w-lg mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded"
+  >
+    <h3 class="font-bold">Oops! Something went wrong.</h3>
+    <p>Please try again later.</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("dynamicForm") as HTMLFormElement;
+  const successMessage = document.getElementById("successMessage") as HTMLElement;
+  const errorMessage = document.getElementById("errorMessage") as HTMLElement;
+
+  const hideMessages = () => {
+    successMessage.classList.add("hidden");
+    errorMessage.classList.add("hidden");
+  };
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    hideMessages();
+
+    try {
+      const myForm = event.target;
+      // @ts-ignore
+      const formData = new FormData(myForm);
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        // @ts-ignore
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        form.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+        form.reset();
+      } else {
+        errorMessage.classList.remove("hidden");
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      errorMessage.classList.remove("hidden");
+      console.error("Error:", error);
+    }
+  });
+</script> 

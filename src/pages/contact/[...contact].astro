@@ -1,0 +1,39 @@
+---
+import DynamicForm from "../../components/DynamicForm.astro";
+import Layout from "../../layouts/Layout.astro";
+import MainContent from "../../components/MainContent.astro";
+import { contactPages } from "../../data/contact.ts";
+
+export function getStaticPaths() {
+  return Object.keys(contactPages).map((slug) => ({
+    params: { contact: slug },
+  }));
+}
+
+const { contact } = Astro.params;
+const page = contactPages[contact as keyof typeof contactPages];
+
+if (!page) {
+  return Astro.redirect("/404");
+}
+
+const { title, questions, formInputs } = page;
+---
+
+<Layout title={title}>
+  <MainContent class="max-w-4xl mx-auto px-4 pt-8 pb-8">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="pt-16 space-y-2 text-center md:text-left">
+        <h1 class="text-2xl font-bold text-primary-dark mb-4">
+          {title}
+        </h1>
+        {questions.map((question) => (
+          <p class="text-primary-dark">{question}</p>
+        ))}
+      </div>
+      <div>
+        <DynamicForm inputs={formInputs} />
+      </div>
+    </div>
+  </MainContent>
+</Layout> 

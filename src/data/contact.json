@@ -1,0 +1,42 @@
+{
+  "request-a-quote": {
+    "title": "Request a Quote",
+    "questions": [
+      "Are you in our service area and would like a quote on your project?",
+      "Fill out the form below and we'll get back to you with a quote for your project."
+    ],
+    "formInputs": [
+      { "type": "text", "name": "name", "label": "Name", "required": true },
+      { "type": "email", "name": "email", "label": "Email", "required": true },
+      { "type": "tel", "name": "phone", "label": "Phone", "required": false },
+      { "type": "text", "name": "location", "label": "Location", "required": false },
+      { "type": "textarea", "name": "projectDescription", "label": "Description of project", "required": true }
+    ]
+  },
+  "general-questions": {
+    "title": "General Questions",
+    "questions": [
+      "Do you have a question about our companies or services?",
+      "Fill out the form below and we'll get back to you as soon as possible."
+    ],
+    "formInputs": [
+      { "type": "text", "name": "name", "label": "Name", "required": true },
+      { "type": "email", "name": "email", "label": "Email", "required": true },
+      { "type": "textarea", "name": "message", "label": "Message", "required": true }
+    ]
+  },
+  "job-opportunities": {
+    "title": "Job Opportunities",
+    "questions": [
+      "Are you looking for a job in home remodeling or commercial landscaping services?",
+      "Fill out the form below and we'll get back to you as soon as possible."
+    ],
+    "formInputs": [
+      { "type": "text", "name": "name", "label": "Name", "required": true },
+      { "type": "email", "name": "email", "label": "Email", "required": true },
+      { "type": "tel", "name": "phone", "label": "Phone", "required": false },
+      { "type": "number", "name": "years-experience", "label": "Years of experience", "required": true },
+      { "type": "textarea", "name": "skills", "label": "Description of skills", "required": true }
+    ]
+  }
+} 

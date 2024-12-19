@@ -3,7 +3,13 @@ import Drawer from "./Drawer.astro";
 import HomeIcon from "./icons/HomeIcon.astro";
 const { className } = Astro.props;
 
-const navLinks = [
+export interface NavLink {
+  href: string;
+  text: string;
+  subnav?: NavLink[];
+}
+
+const navLinks: NavLink[] = [
   { href: "/", text: "Home" },
   { href: "/about", text: "About Us" },
   { href: "/facilities", text: "Facilities" },
@@ -15,7 +21,15 @@ const navLinks = [
       { href: "/service-areas", text: "Service areas" },
     ],
   },
-  { href: "/contact", text: "Contact Us" },
+  {
+    href: "/contact",
+    text: "Contact Us",
+    subnav: [
+      { href: "/contact/general-questions", text: "General Questions" },
+      { href: "/contact/request-a-quote", text: "Request a Quote" },
+      { href: "/contact/job-opportunities", text: "Job Opportunities" },
+    ],
+  },
 ];
 ---
 
@@ -33,11 +47,17 @@ const navLinks = [
         <ul class="flex">
           {navLinks.map((link) => (
             <li class="relative group p-2 lg:m-2 whitespace-nowrap">
-              <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
-                {link.text}
-              </a>
+              {link.subnav ? (
+                <span class="text-primary-dark text-lg cursor-default">
+                  {link.text}
+                </span>
+              ) : (
+                <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
+                  {link.text}
+                </a>
+              )}
               {link.subnav && (
-                <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded">
+                <ul class="absolute right-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded">
                   {link.subnav.map((sublink) => (
                     <li>
                       <a href={sublink.href} class="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100">
