@@ -10,9 +10,9 @@ import MainContent from "../components/MainContent.astro";
 // import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Card from "../components/Card.astro";
+import Carousel from "../components/Carousel/Carousel.astro";
 
-
-// Import images directly
+// Tile Images
 import image1 from "../assets/kitchen-640.jpeg";
 import image2 from "../assets/landscaping1-640.jpg";
 
@@ -61,7 +61,7 @@ const baseSectionClass = 'px-4 py-8 sm:p-8';
 
 <Layout title="Home">
   <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
-    <section class="px-4 py-8 sm:p-8 bg-white">
+    <section class={`${baseSectionClass} bg-white`}>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
         {
           cards.map((card) => (
@@ -107,5 +107,6 @@ const baseSectionClass = 'px-4 py-8 sm:p-8';
         </p>
         <ContactForm />
       </section>
+    </AnimatedWrapper>
   </MainContent>
 </Layout>

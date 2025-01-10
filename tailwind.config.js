@@ -20,7 +20,7 @@ export default {
         serif: ["Merriweather", "serif"],
       },
       textColor: {
-        primary: "white",
+        primary: 'var(--primary)',
         primaryHover: 'var(--primary-dark)',
         cta: "var(--primary)",
       },
