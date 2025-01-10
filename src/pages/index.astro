@@ -96,6 +96,22 @@ const baseSectionClass = "px-4 py-8 sm:p-8";
     </AnimatedWrapper>
 
     <AnimatedWrapper>
+      <section class={`${baseSectionClass} bg-white my-8`}>
+        <h2 class="text-4xl text-primary-dark font-title text-center mb-8">Kitchens & Baths</h2>
+        <Carousel 
+          slides={[
+            { image: kitchen1, alt: "Kitchen remodel with modern finishes" },
+            { image: kitchen2, alt: "Spacious kitchen renovation" },
+            { image: kitchen3, alt: "Custom kitchen design" },
+            { image: bathroom1, alt: "Master bathroom renovation" },
+            { image: bathroom2, alt: "Modern bathroom vanity installation" },
+            { image: bathroom3, alt: "Complete bathroom remodel" }
+          ]}
+        />
+      </section>
+    </AnimatedWrapper>
+
+    <AnimatedWrapper>
       <section class={`${baseSectionClass} bg-white`}>
         <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
           Get In Touch!
