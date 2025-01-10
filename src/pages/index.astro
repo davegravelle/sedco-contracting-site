@@ -22,23 +22,15 @@ import kitchen2 from "../assets/kitchen/99 dick kitchen.jpg";
 import kitchen3 from "../assets/kitchen/99 dick kitchen 2.jpg";
 
 // Bathroom
-import bathroom1 from '../assets/bathroom/30 rockaway finish master bath.jpg';
-import bathroom2 from '../assets/bathroom/30 rockaway finish master bath vanities.jpg';
-import bathroom3 from '../assets/bathroom/34 rockaway bath 1.jpg';
-
-
+import bathroom1 from "../assets/bathroom/30 rockaway finish master bath.jpg";
+import bathroom2 from "../assets/bathroom/30 rockaway finish master bath vanities.jpg";
+import bathroom3 from "../assets/bathroom/34 rockaway bath 1.jpg";
 
 const cards = [
   {
     subtitle: "Commercial and residential remodeling",
     title: "Sedco Contracting LLC",
-    list: [
-      "Kitchens",
-      "Bathrooms",
-      "Fireplaces",
-      "Decks & Porches",
-      "Garages",
-    ],
+    list: ["Kitchens", "Bathrooms", "Fireplaces", "Decks & Porches", "Garages"],
     href: "/services#remodeling",
     imgSrc: image1,
   },
@@ -56,7 +48,7 @@ const cards = [
     imgSrc: image2,
   },
 ];
-const baseSectionClass = 'px-4 py-8 sm:p-8';
+const baseSectionClass = "px-4 py-8 sm:p-8";
 ---
 
 <Layout title="Home">
@@ -75,22 +67,30 @@ const baseSectionClass = 'px-4 py-8 sm:p-8';
 
     <AnimatedWrapper>
       <section class={`${baseSectionClass} bg-white my-8`}>
-        <h1 class="text-4xl text-primary-dark font-title text-center">Kitchens & Baths</h1>
+        <h1 class="text-4xl text-primary-dark font-title text-center">
+          Kitchens & Baths
+        </h1>
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 mt-8">
-          {[kitchen2, kitchen1, kitchen3].map(img => (
-            <AnimatedWrapper>
+          {
+            [kitchen2, kitchen1, kitchen3].map((img) => (
               <div class="col-span-1 sm:col-span-4">
-                <Image src={img} alt="" />
+                <AnimatedWrapper>
+                  <Image src={img} alt="" />
+                </AnimatedWrapper>
               </div>
-            </AnimatedWrapper>
-          ))}
-          {[bathroom2, bathroom1].map((img, i) => (
-            <AnimatedWrapper>
-              <div class={`${i === 0 ? 'col-span-1 sm:col-span-7 ' : 'col-span-1 sm:col-span-5'} sm:max-h-[500px] overflow-hidden`}>
-                <Image class="align-center" src={img} alt="" />
+            ))
+          }
+          {
+            [bathroom2, bathroom1].map((img, i) => (
+              <div
+                class={`${i === 0 ? "col-span-1 sm:col-span-7 " : "col-span-1 sm:col-span-5"} sm:max-h-[500px] overflow-hidden`}
+              >
+                <AnimatedWrapper>
+                  <Image class="align-center" src={img} alt="" />
+                </AnimatedWrapper>
               </div>
-            </AnimatedWrapper>
-          ))}
+            ))
+          }
         </div>
       </section>
     </AnimatedWrapper>
@@ -102,8 +102,8 @@ const baseSectionClass = 'px-4 py-8 sm:p-8';
         </h1>
         <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
           We're still working on the rest of our site but in the meantime we're
-          happy to answer any questions you have about our services. Fill out the
-          form below and we'll get back to you as soon as possible!
+          happy to answer any questions you have about our services. Fill out
+          the form below and we'll get back to you as soon as possible!
         </p>
         <ContactForm />
       </section>
