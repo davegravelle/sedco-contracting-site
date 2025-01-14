@@ -10,7 +10,8 @@ import MainContent from "../components/MainContent.astro";
 // import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Card from "../components/Card.astro";
-import Carousel from "../components/Carousel/Carousel.astro";
+
+import CardCarousel from "../components/CardCarousel.astro";
 
 // Tile Images
 import image1 from "../assets/kitchen-640.jpeg";
@@ -25,6 +26,11 @@ import kitchen3 from "../assets/kitchen/99 dick kitchen 2.jpg";
 import bathroom1 from "../assets/bathroom/30 rockaway finish master bath.jpg";
 import bathroom2 from "../assets/bathroom/30 rockaway finish master bath vanities.jpg";
 import bathroom3 from "../assets/bathroom/34 rockaway bath 1.jpg";
+// Decks
+import deck1 from "../assets/decks/Carmita PT after.jpg";
+import deck2 from "../assets/decks/surf city front deck before .jpg";
+// Porches
+import porch1 from "../assets/porches/34 Rockaway wood porch after 520.jpg";
 
 const cards = [
   {
@@ -48,6 +54,27 @@ const cards = [
     imgSrc: image2,
   },
 ];
+const carouselCards = [
+  {
+    title: "Kitchen & Baths",
+    href: "/services",
+    slides: [
+      { image: kitchen1, alt: "" },
+      { image: kitchen3, alt: "" },
+      { image: bathroom1, alt: "" },
+      { image: bathroom2, alt: "" },
+    ],
+  },
+  {
+    title: "Decks & Porches",
+    href: "/services",
+    slides: [
+      { image: deck1, alt: "" },
+      { image: porch1, alt: "" },
+      { image: deck2, alt: "" },
+    ],
+  },
+];
 const baseSectionClass = "px-4 py-8 sm:p-8";
 ---
 
@@ -64,8 +91,8 @@ const baseSectionClass = "px-4 py-8 sm:p-8";
         }
       </div>
     </section>
-
-    <AnimatedWrapper>
+    <!-- Gallery -->
+    <!-- <AnimatedWrapper>
       <section class={`${baseSectionClass} bg-white my-8`}>
         <h1 class="text-4xl text-primary-dark font-title text-center">
           Kitchens & Baths
@@ -93,9 +120,23 @@ const baseSectionClass = "px-4 py-8 sm:p-8";
           }
         </div>
       </section>
-    </AnimatedWrapper>
-
-    <AnimatedWrapper>
+    </AnimatedWrapper> -->
+    <!-- /Gallery -->
+    <section class=`${baseSectionClass} bg-white`>
+      <h2 class="text-primary-dark text-4xl text-center tracking-widest mb-8 font-title font-bold">Our Services</h2>
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          carouselCards.map((card) => (
+            <div class="col-span-1">
+              <AnimatedWrapper>
+                <CardCarousel {...card} />
+              </AnimatedWrapper>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+    <!-- <AnimatedWrapper>
       <section class={`${baseSectionClass} bg-white my-8`}>
         <h2 class="text-4xl text-primary-dark font-title text-center mb-8">Kitchens & Baths</h2>
         <Carousel 
@@ -109,7 +150,7 @@ const baseSectionClass = "px-4 py-8 sm:p-8";
           ]}
         />
       </section>
-    </AnimatedWrapper>
+    </AnimatedWrapper> -->
 
     <AnimatedWrapper>
       <section class={`${baseSectionClass} bg-white`}>
