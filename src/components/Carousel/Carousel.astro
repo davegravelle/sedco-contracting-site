@@ -7,9 +7,10 @@ interface Props {
     image: ImageMetadata;
     alt?: string;
   }[];
+  pagination?: boolean,
 }
 
-const { slides } = Astro.props;
+const { slides, pagination } = Astro.props;
 ---
 <style>
   .swiper-wrapper {
@@ -27,7 +28,7 @@ const { slides } = Astro.props;
 
 </style>
 
-<div class="max-w-3xl relative m-auto h-full">
+<div class="h-full">
   <div class="swiper default-carousel swiper-container">
     <div class="swiper-wrapper">
       {slides.map((slide) => (
@@ -38,7 +39,7 @@ const { slides } = Astro.props;
       <CarouselButton direction="left" />
       <CarouselButton direction="right" />
     </div>
-    <div class="swiper-pagination"></div>
+    {pagination && <div class="swiper-pagination"></div>}
   </div>
 </div>
 
