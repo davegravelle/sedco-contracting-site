@@ -1,0 +1,10 @@
+title: "Fireplaces"
+description: "Custom fireplace design, installation, and renovation services."
+images:
+  - src: "/src/assets/fireplace/fireplace1-360.jpg"
+    alt: "Modern fireplace design"
+  - src: "/src/assets/fireplace/fireplace2-480.jpeg"
+    alt: "Stone fireplace renovation"
+  - src: "/src/assets/fireplace/fireplace3.jpg"
+    alt: "Custom mantel installation"
+order: 5 

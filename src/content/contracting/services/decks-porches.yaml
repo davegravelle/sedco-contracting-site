@@ -1,0 +1,10 @@
+title: "Decks & Porches"
+description: "Custom outdoor living spaces designed and built to your specifications."
+images:
+  - src: "/src/assets/deck/deck1.jpg"
+    alt: "Custom deck with built-in seating"
+  - src: "/src/assets/deck/deck2.jpg"
+    alt: "Covered porch addition"
+  - src: "/src/assets/deck/deck3.jpg"
+    alt: "Multi-level deck design"
+order: 2 

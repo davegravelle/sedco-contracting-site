@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import MainContent from "../../../components/MainContent.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import ServiceSidebar from "../../../components/ServiceSidebar.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { service: 'contracting' }},
+    { params: { service: 'property-management' }},
+  ];
+}
+
+const { service } = Astro.params;
+const servicesData = await getCollection(service as 'contracting' | 'property-management', entry => entry.id.startsWith('services/'));
+const sortedServices = servicesData.sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: `${service === 'contracting' ? 'Contracting' : 'Property Management'} Services` },
+];
+
+const pageTitle = `${service === 'contracting' ? 'Contracting' : 'Property Management'} Services`;
+---
+<Layout title={pageTitle}>
+  <MainContent class="max-w-screen-xl mx-auto px-4 py-8">
+    <Breadcrumb items={breadcrumbItems} />
+    
+    <div class="flex gap-8">
+      <ServiceSidebar 
+        activeItem="Services"
+        parent={service}
+        services={sortedServices}
+      />
+      
+      <div class="flex-1">
+        <h1 class="text-4xl font-bold text-primary-dark mb-12">
+          {pageTitle}
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {sortedServices.map((service) => (
+            <a 
+              href={`/${Astro.params.service}/services/${service.id.replace('services/', '')}`}
+              class="bg-gray-200 hover:bg-gray-300 transition-colors p-8 rounded-lg text-center group"
+            >
+              <h2 class="text-2xl font-semibold text-primary-dark group-hover:underline">
+                {service.data.title}
+              </h2>
+              <p class="mt-4 text-gray-600">
+                {service.data.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </MainContent>
+</Layout> 

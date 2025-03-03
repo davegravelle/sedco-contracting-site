@@ -1,0 +1,32 @@
+---
+interface Props {
+  activeItem?: string;
+  parent: string;
+}
+
+const { activeItem, parent } = Astro.props;
+
+const items = [
+  { label: "Our Services", href: `/${parent}/services` },
+  { label: "Products", href: `/${parent}/products` },
+  { label: "Procedures", href: "/procedures" },
+  { label: "Testimonials", href: "/testimonials" },
+];
+---
+
+<aside class="w-64">
+  <nav>
+    {items.map(item => (
+      <a
+        href={item.href}
+        class={`block p-4 border-b ${
+          activeItem === item.label
+            ? "bg-primary-dark text-white"
+            : "hover:bg-gray-100"
+        }`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</aside> 

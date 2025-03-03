@@ -1,0 +1,10 @@
+title: "Additions & Garages"
+description: "Expand your living space with custom room additions and garage construction."
+images:
+  - src: "/src/assets/garage/garage1.jpg"
+    alt: "Two-car garage addition"
+  - src: "/src/assets/addition/addition1.jpg"
+    alt: "Room addition exterior"
+  - src: "/src/assets/addition/addition2.jpg"
+    alt: "Interior of new room addition"
+order: 3

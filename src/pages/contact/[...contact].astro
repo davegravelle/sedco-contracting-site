@@ -2,7 +2,7 @@
 import DynamicForm from "../../components/DynamicForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import MainContent from "../../components/MainContent.astro";
-import { contactPages } from "../../data/contact.ts";
+import { contactPages } from "../../data/contact/contact.ts";
 
 export function getStaticPaths() {
   return Object.keys(contactPages).map((slug) => ({
