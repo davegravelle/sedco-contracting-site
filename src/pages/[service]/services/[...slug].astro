@@ -53,18 +53,11 @@ const breadcrumbItems = [
         {entry.data.images && entry.data.images.length > 0 && (
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {entry.data.images.map((image) => (
-              <figure class="relative">
                 <img 
                   src={image.src} 
                   alt={image.alt}
-                  class="w-full h-64 object-cover rounded-lg"
+                  class="relative w-full h-full md:h-64 object-cover"
                 />
-                {image.caption && (
-                  <figcaption class="mt-2 text-sm text-gray-600 italic">
-                    {image.caption}
-                  </figcaption>
-                )}
-              </figure>
             ))}
           </div>
         )}

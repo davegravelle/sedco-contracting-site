@@ -5,22 +5,23 @@ interface Props {
 }
 
 const { activeItem, parent } = Astro.props;
-
+console.log('parent', parent);
+console.log('activeItem', activeItem);
 const items = [
-  { label: "Our Services", href: `/${parent}/services` },
+  { label: `${parent} Services`, href: `/${parent}/services` },
   { label: "Products", href: `/${parent}/products` },
   { label: "Procedures", href: "/procedures" },
   { label: "Testimonials", href: "/testimonials" },
 ];
 ---
 
-<aside class="w-64">
-  <nav>
+<aside class="w-64 hidden lg:flex">
+  <nav class="w-full">
     {items.map(item => (
       <a
         href={item.href}
-        class={`block p-4 border-b ${
-          activeItem === item.label
+        class={`capitalize block p-4 border-b ${
+          activeItem?.toLowerCase() === item.label.toLowerCase()
             ? "bg-primary-dark text-white"
             : "hover:bg-gray-100"
         }`}
