@@ -5,8 +5,7 @@ interface Props {
 }
 
 const { activeItem, parent } = Astro.props;
-console.log('parent', parent);
-console.log('activeItem', activeItem);
+
 const items = [
   { label: `${parent} Services`, href: `/${parent}/services` },
   { label: "Products", href: `/${parent}/products` },

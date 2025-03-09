@@ -22,12 +22,12 @@ export async function getStaticPaths() {
   );
 }
 
-const { service, slug } = Astro.params;
+const { service } = Astro.params;
 const { entry } = Astro.props;
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
-  { label: `${service === 'contracting' ? 'Contracting' : 'Property Management'} Services`, href: `/${service}/services` },
+  { label: `${service} Services`, href: `/${service}/services` },
   { label: entry.data.title },
 ];
 ---
