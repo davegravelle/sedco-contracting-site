@@ -1,4 +1,4 @@
-import type { InputConfig } from "../components/DynamicForm.astro";
+import type { InputConfig } from "../../components/DynamicForm.astro";
 import contactData from "./contact.json";
 
 interface ContactPage {
