@@ -52,10 +52,8 @@ const pageTitle = `${service === 'contracting' ? 'Contracting' : 'Property Manag
                   {service.data.title}
                 </h2>
                 <CustomAstroImage
-                  className="absolute top-0 left-0"
-                  imgClassName="w-full h-64 object-cover"
-                  mobileImgUrl={service.data.images[0].src}
-                  desktopImgUrl={service.data.images[0].src}
+                  className="absolute top-0 left-0 w-full h-64 object-cover"
+                  imagePath={service.data.images[0].src}
                   alt={service.data.images[0].alt}
                 />
               </div>

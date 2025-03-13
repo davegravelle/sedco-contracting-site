@@ -55,10 +55,8 @@ const breadcrumbItems = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {entry.data.images.map((image) => (
               <CustomAstroImage
-                className="relative w-full h-full md:h-64 object-cover"
-                imgClassName="w-full h-64 object-cover"
-                mobileImgUrl={image.src}
-                desktopImgUrl={image.src}
+                className="relative w-full h-full md:h-64 object-cover w-full h-64 object-cover"
+                imagePath={image.src}
                 alt={image.alt}
               />
             ))}
