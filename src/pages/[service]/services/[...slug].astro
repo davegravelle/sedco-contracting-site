@@ -4,6 +4,7 @@ import Layout from "../../../layouts/Layout.astro";
 import MainContent from "../../../components/MainContent.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import ServiceSidebar from "../../../components/ServiceSidebar.astro";
+import CustomAstroImage from "../../../components/CustomAstroImage.astro";
 
 export async function getStaticPaths() {
   const services = [
@@ -53,11 +54,13 @@ const breadcrumbItems = [
         {entry.data.images && entry.data.images.length > 0 && (
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             {entry.data.images.map((image) => (
-                <img 
-                  src={image.src} 
-                  alt={image.alt}
-                  class="relative w-full h-full md:h-64 object-cover"
-                />
+              <CustomAstroImage
+                className="relative w-full h-full md:h-64 object-cover"
+                imgClassName="w-full h-64 object-cover"
+                mobileImgUrl={image.src}
+                desktopImgUrl={image.src}
+                alt={image.alt}
+              />
             ))}
           </div>
         )}

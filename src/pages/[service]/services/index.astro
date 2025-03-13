@@ -4,6 +4,7 @@ import Layout from "../../../layouts/Layout.astro";
 import MainContent from "../../../components/MainContent.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import ServiceSidebar from "../../../components/ServiceSidebar.astro";
+import CustomAstroImage from "../../../components/CustomAstroImage.astro";
 
 export function getStaticPaths() {
   return [
@@ -45,21 +46,19 @@ const pageTitle = `${service === 'contracting' ? 'Contracting' : 'Property Manag
             >
               <div 
                 class="w-full h-64 object-cover relative "
-                style={{
-                  backgroundImage: `url(${service.data.images[0].src})`,
-                  backgroundSize: 'cover'
-                }}
               >
-                <div class="absolute inset-0 bg-gray-800/30 group-hover:bg-gray-800/60 transition-colors"></div>
-                <h2 class="text-2xl font-semibold text-white relative z-10 p-4 group-hover:scale-105 origin-center transition-all">
+                <div class="absolute inset-0 bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
+                <h2 class="text-2xl font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
                   {service.data.title}
                 </h2>
-              </div>
-              {/* <img 
-                  src={service.data.images[0].src} 
+                <CustomAstroImage
+                  className="absolute top-0 left-0"
+                  imgClassName="w-full h-64 object-cover"
+                  mobileImgUrl={service.data.images[0].src}
+                  desktopImgUrl={service.data.images[0].src}
                   alt={service.data.images[0].alt}
-                  class="w-full h-64 object-cover"
-                /> */}
+                />
+              </div>
             </a>
           ))}
         </div>
