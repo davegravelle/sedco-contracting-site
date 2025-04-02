@@ -34,7 +34,7 @@ const pageTitle = `${service === 'contracting' ? 'Contracting' : 'Property Manag
       />
       
       <div class="flex-1">
-        <h1 class="text-4xl font-bold text-primary-dark mb-12">
+        <h1 class="text-4xl font-bold text-primary-dark mb-12 text-center lg:text-left">
           {pageTitle}
         </h1>
         
@@ -42,17 +42,17 @@ const pageTitle = `${service === 'contracting' ? 'Contracting' : 'Property Manag
           {sortedServices.map((service) => (
             <a 
               href={`/${Astro.params.service}/services/${service.id.replace('services/', '')}`}
-              class="bg-gray-200 hover:bg-gray-300 transition-all duration-300 p-8S text-center group col-span-1 shadow-md hover:shadow-xl overflow-hidden"
+              class="group transition-all duration-300 p-8S text-center col-span-1 overflow-hidden flex justify-center"
             >
               <div 
-                class="w-full h-64 object-cover relative "
+                class="w-full h-64 max-w-[360px] max-h-[360px] object-cover shadow-md hover:shadow-xl relative"
               >
-                <div class="absolute inset-0 bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
+                <div class="absolute inset-0 w-full h-full bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
                 <h2 class="text-2xl font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
                   {service.data.title}
                 </h2>
                 <CustomAstroImage
-                  className="absolute top-0 left-0 w-full h-64 object-cover"
+                  className="absolute top-0 left-0 w-full min-h-64 object-cover"
                   imagePath={service.data.images[0].src}
                   alt={service.data.images[0].alt}
                 />

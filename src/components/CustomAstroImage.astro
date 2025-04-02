@@ -7,15 +7,22 @@ interface Props {
     className?: string;
     imagePath: string;
     alt: string;
+    height?: number;
+    width?: number;
 }
 
-const { className, imagePath, alt } = Astro.props;
+const { className, imagePath, alt, height, width } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}');
-if (!images[imagePath]) console.error(`"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp}');
+if (!images[imagePath]) console.error(`"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif,webp}"`);
+const image = images[imagePath] && images[imagePath]()
 ---
-{images[imagePath] ? (
-    <Image class={className} src={images[imagePath]() || ''} alt={alt} />
+{image ? (
+    <Image 
+        class={className} 
+        src={image || ''} 
+        alt={alt}
+    />
 )
 : (
     <img class={className} alt={alt} />
