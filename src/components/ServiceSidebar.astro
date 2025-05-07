@@ -7,7 +7,7 @@ interface Props {
 const { activeItem, parent } = Astro.props;
 
 const items = [
-  { label: `${parent} Services`, href: `/${parent}/services` },
+  { label: `${parent} Services`, href: `/services/${parent}` },
   { label: "Products", href: `/${parent}/products` },
   { label: "Procedures", href: "/procedures" },
   { label: "Testimonials", href: "/testimonials" },

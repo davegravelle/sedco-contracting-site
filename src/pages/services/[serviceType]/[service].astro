@@ -1,0 +1,102 @@
+---
+import { contentfulClient } from "../../../lib/contentful";
+import Layout from "../../../layouts/Layout.astro";
+import MainContent from "../../../components/MainContent.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import VerticalNav from "../../../components/VerticalNav.astro";
+
+// types
+import type { NavItem } from "../../../components/VerticalNav.astro";
+
+// TODO: consolidate this logic in lib/contentful
+export async function getStaticPaths() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "services",
+  });
+
+  const paths = [];
+  const navItems: NavItem[] = [];
+
+  entries.items.forEach((servicesItem) => {
+    const navItem = {
+      label: servicesItem.fields.name,
+      href: `/services/${servicesItem.fields.slug}`,
+      children: servicesItem.fields?.servicesOffered?.map(s => ({
+        label: s.fields.name,
+        href: `/services/${servicesItem.fields.slug}/${s.fields.slug}`
+      }))
+    };
+    navItems.push(navItem);
+    servicesItem?.fields?.servicesOffered?.forEach((item) => {
+      const { 
+        name, 
+        description, 
+        images,
+        slug 
+      } = item.fields;
+
+    
+      paths.push({
+        params: {
+          serviceType: servicesItem.fields.slug,
+          service: slug,
+        },
+        props: {
+          name,
+          description,
+          images,
+          navItems,
+          slug,
+        }
+      });
+    });
+  });
+
+  return paths;
+}
+
+const { service, serviceType } = Astro.params;
+const { description, images, name, navItems, slug } = Astro.props;
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: `${serviceType}`, href: `/services/${serviceType}` },
+  { label: name },
+];
+
+---
+<Layout title={name}>
+  <MainContent class="max-w-screen-xl mx-auto px-4 py-8">
+    <Breadcrumb items={breadcrumbItems} />
+    
+    <div class="flex gap-8">
+      <VerticalNav
+        items={navItems}
+        activePath={`/services/${serviceType}/${slug}` as string} 
+        expandible={false}
+      />
+      
+      <div class="flex-1">
+        <h1 class="text-4xl font-bold text-primary-dark mb-8">
+          {name}
+        </h1>
+        
+        <p class="text-lg text-gray-700 mb-8">
+          {description}
+        </p>
+        
+        {images?.length > 0 && (
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+            {images.map((image) => (
+              <img
+                class="relative m-auto max-w-[360px] max-h-[360px] w-full object-cover"
+                src={image.fields.file.url}
+                alt={""}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </MainContent>
+</Layout> 

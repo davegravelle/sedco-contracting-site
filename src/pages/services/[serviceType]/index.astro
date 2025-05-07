@@ -1,0 +1,103 @@
+---
+import { contentfulClient } from "../../../lib/contentful";
+import Layout from "../../../layouts/Layout.astro";
+import MainContent from "../../../components/MainContent.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import VerticalNav from "../../../components/VerticalNav.astro";
+
+// types
+import type { NavItem } from "../../../components/VerticalNav.astro";
+
+// TODO: consolidate this logic in lib/contentful
+export async function getStaticPaths() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "services",
+  });
+
+  const navItems: NavItem[] = [];
+
+  const paths =  entries.items.map((item) => {
+  console.log(item.fields)
+    const navItem = {
+      label: item.fields.name,
+      href: `/services/${item.fields.slug}`,
+      children: item.fields?.servicesOffered?.map(s => ({
+        label: s.fields.name,
+        href: `/services/${item.fields.slug}/${s.fields.slug}`
+      }))
+    };
+    navItems.push(navItem);
+    const { name, servicesOffered, slug } = item.fields;
+    return {
+      params: {
+        serviceType: slug,
+      },
+      props: {
+        name,
+        navItems,
+        slug,
+        services: servicesOffered,
+      }
+    };
+  });
+
+  return paths;
+}
+
+const { serviceType } = Astro.params;
+const {
+  name,
+  navItems,
+  slug,
+  services,
+} = Astro.props;
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: name as string, href: "" },
+];
+
+---
+<Layout title={name as string}>
+  <MainContent class="max-w-screen-xl mx-auto px-4 py-8">
+    <Breadcrumb items={breadcrumbItems} />
+    
+    <div class="flex gap-8">
+      <VerticalNav
+        items={navItems}
+        activePath={`/services/${serviceType}/${slug}` as string} 
+        expandible={false}
+      />
+      
+      <div class="flex-1">
+        <h1 class="text-4xl font-bold text-primary-dark mb-12 text-center lg:text-left">
+          {name}
+        </h1>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services?.map((service) => (
+            <a 
+              href={`/services/${serviceType}/${service.fields.slug}`}
+              class="group transition-all duration-300 p-8S text-center col-span-1 overflow-hidden flex justify-center"
+            >
+              <div 
+                class="w-full h-64 max-w-[360px] max-h-[360px] object-cover shadow-md hover:shadow-xl relative"
+              >
+                <div class="absolute inset-0 w-full h-full bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
+                <h2 class="text-2xl font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
+                  {service.fields.name}
+                </h2>
+                {services?.[0]?.fields?.images?.[0]?.fields?.file?.url && <img
+                  class="absolute top-0 left-0 w-full min-h-64 object-cover"
+                  src={services?.[0].fields?.images?.[0]?.fields?.file?.url}
+                  alt={""}
+                />}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+  </MainContent>
+</Layout> 
