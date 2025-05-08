@@ -11,6 +11,7 @@ export const contentfulClient = contentful.createClient({
 const SPACE = import.meta.env.CONTENTFUL_SPACE_ID
 const TOKEN = import.meta.env.CONTENTFUL_DELIVERY_TOKEN
 
+// @ts-ignore
 async function getContentfulQuery(query, variables) {
   const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${SPACE}/environments/master`;
   const options = {
