@@ -9,11 +9,9 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
   });
 
  const products = entries.items.map((item) => {
-    console.log(item)
-    const { title, products, slug } = item.fields;
+    const { title, products } = item.fields;
     return {
         title,
-        slug,
         products,
     };
   });
@@ -21,7 +19,6 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 // const { serviceType } = Astro.params;
 const {
   title = "Products",
-  slug,
 } = Astro.props;
 
 
@@ -37,23 +34,33 @@ const breadcrumbItems = [
     
     <div class="flex gap-8">
       <div class="flex-1">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products && products?.map((product) => (
-            <div
-              class="group transition-all duration-300 p-8S text-center col-span-1 overflow-hidden flex justify-center"
-            >
-              <div 
-                class="w-full h-64 max-w-[360px] max-h-[360px] object-cover shadow-md hover:shadow-xl relative"
-              >
-                <div class="absolute inset-0 w-full h-full bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
-                <h2 class="text-2xl font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
-                  {product.title}
-                </h2>
-              </div>
+        <h1 class="text-3xl text-primary-dark font-bold mb-6">Products We Use and Recommend</h1>
+        {products.map((category) => (
+          <div class="mb-12">
+            <h2 class="text-2xl text-primary-dark font-bold mb-4">{category.title}</h2> 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category?.products?.map((item) => (
+                // Product Card
+                <div class="border border-gray-200 rounded-lg p-6 bg-white h-64 max-w-xs flex flex-col">
+                  <div class="h-16 flex items-center">
+                    <img src={item.fields?.image?.fields?.file?.url} alt={""} class="max-h-full" />
+                  </div>
+                  <div class="mt-4 flex-grow flex flex-col">
+                    {item?.fields?.description && <p class="flex-grow">{item.fields.description}</p>}
+                    {item?.fields?.cost && (
+                      <div class="mt-2">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <span class={`text-2xl tracking-widest font-bold spacing- ${(i + 1) <= item.fields.cost ? 'text-primary-dark' : 'text-gray-400'}`}>$</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+        
       </div>
     </div>
     
