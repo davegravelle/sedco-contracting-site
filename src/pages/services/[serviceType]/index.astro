@@ -17,7 +17,6 @@ export async function getStaticPaths() {
   const navItems: NavItem[] = [];
 
   const paths =  entries.items.map((item) => {
-  console.log(item.fields)
     const navItem = {
       label: item.fields.name,
       href: `/services/${item.fields.slug}`,
@@ -54,6 +53,7 @@ const {
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
+  { label: "Services", href: "" },
   { label: name as string, href: "" },
 ];
 
@@ -70,7 +70,7 @@ const breadcrumbItems = [
       />
       
       <div class="flex-1">
-        <h1 class="text-4xl font-bold text-primary-dark mb-12 text-center lg:text-left">
+        <h1 class="text-4xl font-title font-bold text-primary-dark mb-12 text-center lg:text-left">
           {name}
         </h1>
         
@@ -84,12 +84,12 @@ const breadcrumbItems = [
                 class="w-full h-64 max-w-[360px] max-h-[360px] object-cover shadow-md hover:shadow-xl relative"
               >
                 <div class="absolute inset-0 w-full h-full bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10"></div>
-                <h2 class="text-2xl font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
+                <h2 class="text-3xl font-title font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
                   {service.fields.name}
                 </h2>
-                {services?.[0]?.fields?.images?.[0]?.fields?.file?.url && <img
+                {service?.fields?.images?.[0]?.fields?.file?.url && <img
                   class="absolute top-0 left-0 w-full min-h-64 object-cover"
-                  src={services?.[0].fields?.images?.[0]?.fields?.file?.url}
+                  src={service?.fields?.images?.[0]?.fields?.file?.url}
                   alt={""}
                 />}
               </div>

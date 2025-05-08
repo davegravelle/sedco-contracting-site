@@ -13,11 +13,11 @@ const { items } = Astro.props;
   {items.map((item, index) => (
     <>
       {item.href ? (
-        <a href={item.href} class="capitalize hover:text-primary-dark transition-colors">
+        <a href={item.href} class="capitalize hover:underline transition">
           {item.label}
         </a>
       ) : (
-        <span class="text-primary-dark">{item.label}</span>
+        <span>{item.label}</span>
       )}
       {index < items.length - 1 && <span class="text-gray-400">/</span>}
     </>
