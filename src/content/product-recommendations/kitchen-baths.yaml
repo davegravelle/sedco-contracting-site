@@ -1,0 +1,24 @@
+title: "Kitchen & Baths"
+description: "Our recommended products for kitchen and bathroom renovations."
+categories:
+  - title: "Tubs"
+    products:
+      - description: "American Standard"
+        image: "/src/assets/products/kitchens/american-standard.jpg"
+        rating: 3
+  - title: "Plumbing Fixtures"
+    products:
+      - description: "Delta fixtures and R1000 valve"
+        image: "/src/assets/products/moen-align.jpg"
+        rating: 3
+      - description: "Delta Essa Touch"
+        image: "/src/assets/products/delta-essa.jpg"
+        rating: 3
+  - title: "Cabinet Hardware"
+    products:
+      - description: "Top Knobs Serene Collection"
+        image: "/src/assets/products/top-knobs.jpg"
+        rating: 3
+      - description: "Atlas Homewares Modern Pull"
+        image: "/src/assets/products/atlas-pull.jpg"
+        rating: 2 

@@ -1,0 +1,10 @@
+title: "Paver Patios & Retaining Walls"
+description: "Professional hardscaping services for beautiful and functional outdoor spaces."
+images:
+  - src: "/src/assets/patio/patio1.jpg"
+    alt: "Paver patio with built-in firepit"
+  - src: "/src/assets/wall/wall1.jpg"
+    alt: "Stone retaining wall"
+  - src: "/src/assets/patio/patio2.jpg"
+    alt: "Custom paver walkway"
+order: 4 

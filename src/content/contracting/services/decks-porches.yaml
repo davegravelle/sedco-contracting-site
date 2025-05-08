@@ -1,0 +1,19 @@
+title: "Decks & Porches"
+description: "Custom outdoor living spaces designed and built to your specifications."
+images:
+  - src: "/src/assets/services/decks/ridge-deck-1.jpg"
+    alt: ""
+
+  - src: "/src/assets/services/decks/ridge-deck-2.jpg"
+    alt: ""
+
+  - src: "/src/assets/services/decks/ridge-porch-2.jpg"
+    alt: ""
+
+  - src: "/src/assets/services/decks/rockaway-porch-1.jpg"
+    alt: ""
+    
+  - src: "/src/assets/services/porches/Carmita-1.jpg"
+    alt: ""
+
+order: 2 

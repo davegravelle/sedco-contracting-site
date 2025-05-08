@@ -1,0 +1,10 @@
+title: "Staircases"
+description: "Custom staircase design and installation for both interior and exterior spaces."
+images:
+  - src: "/src/assets/stair/stair1.jpg"
+    alt: "Custom interior staircase"
+  - src: "/src/assets/stair/stair2.jpg"
+    alt: "Modern railing design"
+  - src: "/src/assets/stair/stair3.jpg"
+    alt: "Exterior staircase installation"
+order: 6 

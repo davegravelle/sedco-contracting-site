@@ -4,7 +4,7 @@ import HomeIcon from "./icons/HomeIcon.astro";
 const { className } = Astro.props;
 
 export interface NavLink {
-  href: string;
+  href?: string;
   text: string;
   subnav?: NavLink[];
 }
@@ -14,10 +14,11 @@ const navLinks: NavLink[] = [
   { href: "/about", text: "About Us" },
   { href: "/facilities", text: "Facilities" },
   {
-    href: "/services",
     text: "Services",
     subnav: [
-      { href: "/services", text: "Services" },
+      { href: "/services/contracting", text: "Contracting" },
+      { href: "/services/property-maintenance", text: "Property Maintenance" },
+      { href: "/services/products", text: "Recommended Products" },
       { href: "/service-areas", text: "Service areas" },
     ],
   },
