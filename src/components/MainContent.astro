@@ -6,7 +6,7 @@ const defaultClasses = 'min-h-full'
 const { class: className } = Astro.props;
 ---
 <style>
-    .main { min-height: calc(100vh - 200px) }
+    .main { min-height: calc(100vh - 456px); }
 </style>
 <main class={`main  ${defaultClasses} ${className}`}>
     <slot />

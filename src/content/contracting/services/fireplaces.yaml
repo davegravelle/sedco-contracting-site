@@ -1,0 +1,19 @@
+title: "Fireplaces"
+description: "Custom fireplace design, installation, and renovation services."
+images:
+  - src: "/src/assets/services/fireplaces/34-rockaway-fireplace-1.webp"
+    alt: "Modern fireplace design"
+    
+  - src: "/src/assets/services/fireplaces/ernst-fireplace-1.webp"
+    alt: "Stone fireplace renovation"
+    
+  - src: "/src/assets/services/fireplaces/Marble-fireplace-after-1.webp"
+    alt: "Custom mantel installation"
+    
+  - src: "/src/assets/services/fireplaces/Peachtree-After-1.webp"
+    alt: "Modern fireplace design"
+    
+  - src: "/src/assets/services/fireplaces/stone-fireplace-1.webp"
+    alt: "Stone fireplace renovation"
+  
+order: 3
