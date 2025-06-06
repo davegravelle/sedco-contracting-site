@@ -1,0 +1,72 @@
+---
+import Title from "./Title.astro";
+
+export interface Props {
+  class?: string;
+  content: string;
+  contentPlacement: "left" | "right" | "center";
+  imgSrc: string;
+  imgAlt: string;
+  title: string;
+}
+
+const {
+  class: className = "",
+  content,
+  contentPlacement,
+  imgSrc,
+  imgAlt,
+  title,
+} = Astro.props;
+
+const getLayoutClasses = () => {
+  switch (contentPlacement) {
+    case "right":
+      return "md:flex-row-reverse";
+    case "center":
+      return "flex-col items-center text-center";
+    case "left":
+    default:
+      return "md:flex-row";
+  }
+};
+
+const layoutClasses = getLayoutClasses();
+---
+
+<div class={`content-block ${className}`}>
+  <div
+    class={`flex flex-col gap-6 ${layoutClasses} ${contentPlacement !== "center" ? "md:gap-8 items-center" : ""}`}
+  >
+    <!-- Image Section -->
+    <div
+      class={`flex-shrink-0 ${contentPlacement === "center" ? "w-full max-w-md" : "w-full md:w-1/2"}`}
+    >
+      <img
+        src={imgSrc}
+        alt={imgAlt}
+        class="w-full h-auto shadow-md object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Content Section -->
+    <div
+      class={`flex-1 text-center ${contentPlacement === "center" ? "w-full max-w-2xl" : "w-full md:w-1/2 md:text-left"}`}
+    >
+      <Title element="h2" size="3xl" class="mb-4">
+        {title}
+      </Title>
+
+      <div>
+        <Fragment set:html={content} />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .content-block {
+    @apply w-full p-6;
+  }
+</style>

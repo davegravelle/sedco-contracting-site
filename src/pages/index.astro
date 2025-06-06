@@ -8,45 +8,65 @@ import MainContent from "../components/MainContent.astro";
 // import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Card from "../components/Card.astro";
-
+import ContentBlock from "../components/ui/ContentBlock.astro";
+import Title from "../components/ui/Title.astro";
+import Banner from "../components/ui/Banner.astro";
 
 // Import images directly
 import image1 from "../assets/kitchen-640.jpeg";
 import image2 from "../assets/landscaping1-640.jpg";
+import bannerImage from "../assets/framing-background.png";
 
-const cards = [
-  {
-    subtitle: "Commercial and residential remodeling",
-    title: "Sedco Contracting LLC",
-    list: [
-      "Kitchens",
-      "Bathrooms",
-      "Fireplaces",
-      "Decks & Porches",
-      "Garages",
-    ],
-    href: "/services#remodeling",
-    imgSrc: image1,
-  },
-  {
-    title: "Sedco Property Maintenance LLC",
-    subtitle: "Commercial landscaping and snow removal ",
-    list: [
-      "Lawn maintenance",
-      "Landscaping",
-      "Hardscaping",
-      "Snow plowing & removal",
-      "Ice management",
-    ],
-    href: "/services#snowRemoval",
-    imgSrc: image2,
-  },
-];
+// const cards = [
+//   {
+//     subtitle: "Commercial and residential remodeling",
+//     title: "Sedco Contracting LLC",
+//     list: ["Kitchens", "Bathrooms", "Fireplaces", "Decks & Porches", "Garages"],
+//     href: "/services#remodeling",
+//     imgSrc: image1,
+//   },
+//   {
+//     title: "Sedco Property Maintenance LLC",
+//     subtitle: "Commercial landscaping and snow removal ",
+//     list: [
+//       "Lawn maintenance",
+//       "Landscaping",
+//       "Hardscaping",
+//       "Snow plowing & removal",
+//       "Ice management",
+//     ],
+//     href: "/services#snowRemoval",
+//     imgSrc: image2,
+//   },
+// ];
 ---
 
 <Layout title="Home">
   <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
-    <section class="px-4 py-8 sm:p-8 bg-white">
+    <Banner imgSrc={bannerImage}>
+      <Title
+        mobileSize="3xl"
+        desktopSize="5xl"
+        color="text-white"
+        fontWeight="medium"
+        class="relative z-10 leading-[1.3]"
+      >
+        Serving the Northern
+        <br />
+        & Central New Jersey Area
+      </Title>
+      <Title
+        element="h2"
+        mobileSize="2xl"
+        desktopSize="2xl"
+        fontWeight="thin"
+        color="text-white"
+        class="relative z-10"
+      >
+        since 2003
+      </Title>
+    </Banner>
+    <!-- <section class="px-4 py-8 sm:p-8 bg-white">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
         {
           cards.map((card) => (
@@ -56,12 +76,61 @@ const cards = [
           ))
         }
       </div>
-    </section>
+    </section> -->
+
+    <ContentBlock
+      title="Construction & Remodeling"
+      contentPlacement="left"
+      class="bg-primary-dark text-primary"
+      content={`
+        <ul>
+          <li>Commercial & Residential</li>
+          <li>Kitchens & Baths</li>
+          <li>Fireplaces</li>
+          <li>Decks & Porches</li>
+          <li>Additions</li>
+        </ul>
+      `}
+      imgSrc="src/assets/kitchen-640.jpeg"
+      imgAlt=""
+    />
+    <ContentBlock
+      class="bg-accent-slate text-white"
+      title="Construction & Remodeling"
+      contentPlacement="right"
+      content={`
+        <ul>
+          <li>Commercial & Residential</li>
+          <li>Kitchens & Baths</li>
+          <li>Fireplaces</li>
+          <li>Decks & Porches</li>
+          <li>Additions</li>
+        </ul>
+      `}
+      imgSrc="src/assets/kitchen-640.jpeg"
+      imgAlt=""
+    />
+    <ContentBlock
+      class="bg-accent-beige"
+      title="Construction & Remodeling"
+      contentPlacement="center"
+      content={`
+        <ul>
+          <li>Commercial & Residential</li>
+          <li>Kitchens & Baths</li>
+          <li>Fireplaces</li>
+          <li>Decks & Porches</li>
+          <li>Additions</li>
+        </ul>
+      `}
+      imgSrc="src/assets/kitchen-640.jpeg"
+      imgAlt=""
+    />
 
     <section class="px-4 py-8 sm:p-8 bg-white">
-      <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
+      <Title element="h2" class="text-center mb-8" size="3xl">
         Get In Touch!
-      </h1>
+      </Title>
       <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
         We're still working on the rest of our site but in the meantime we're
         happy to answer any questions you have about our services. Fill out the

@@ -1,0 +1,94 @@
+---
+export interface Props {
+  element?: "h1" | "h2" | "h3" | "div" | "span";
+  fontWeight?:
+    | "bold"
+    | "thin"
+    | "extralight"
+    | "light"
+    | "normal"
+    | "medium"
+    | "semibold"
+    | "bold"
+    | "extrabold"
+    | "black";
+  mobileSize?:
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl"
+    | "8xl"
+    | "9xl";
+  desktopSize?:
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl"
+    | "8xl"
+    | "9xl";
+  class?: string;
+  color?: string;
+}
+
+const {
+  color = "text-current",
+  element = "h1",
+  mobileSize = "2xl",
+  desktopSize = "2xl",
+  fontWeight = "bold",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const sizeClasses = {
+  s: "text-sm",
+  m: "text-base",
+  l: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+  "5xl": "text-5xl",
+  "6xl": "text-6xl",
+  "7xl": "text-7xl",
+  "8xl": "text-8xl",
+  "9xl": "text-9xl",
+};
+
+const fontWeightClasses = {
+  thin: "font-thin",
+  extralight: "font-extralight",
+  light: "font-light",
+  normal: "font-normal",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
+  extrabold: "font-extrabold",
+  black: "font-black",
+};
+
+const Element = element;
+const colorClass = color;
+const mobileSizeClass = sizeClasses[mobileSize];
+const desktopSizeClass = sizeClasses[desktopSize];
+const fontWeightClass = fontWeightClasses[fontWeight];
+const finalClass =
+`title ${mobileSizeClass} md:${desktopSizeClass} ${fontWeightClass} ${colorClass} ${className}`.trim();
+console.log(finalClass)
+---
+
+<Element class={finalClass} {...rest}>
+  <slot />
+</Element>

@@ -1,0 +1,36 @@
+---
+import { getImage } from "astro:assets";
+import Title from "./Title.astro";
+import Overlay from "./Overlay.astro";
+const { imgSrc, bgColor, title, titleSize } = Astro.props;
+
+const bgImage = await getImage({ src: imgSrc });
+const bgUrl = `url(${bgImage.src})`;
+---
+
+<section class="banner p-2 md:p-8">
+  <Overlay />
+  <slot />
+</section>
+
+<style define:vars={{ bgUrl }}>
+  .banner {
+    background-image: var(--bgUrl);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 249px;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+  }
+
+  .overlay {
+    z-index: 1;
+  }
+
+  .title {
+    position: relative;
+    z-index: 100;
+  }
+</style>

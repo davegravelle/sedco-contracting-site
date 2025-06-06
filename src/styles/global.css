@@ -14,16 +14,39 @@
 @layer base {
   :root {
     --primary: rgb(0, 0, 128);
-    --primary-dark: #161843;
+    --primary-dark: rgb(22, 24, 67);
     --primary-light: rgb(33, 86, 200);
     --accent: rgb(120, 120, 117);
     --accent-light: rgb(234, 233, 236);
+    --accent-beige: rgb(223, 205, 181);
     --accent-brown: rgb(126, 120, 112);
-    --accent-slate: #8494ac;
+    --accent-slate: rgb(132, 148, 172);
     --cta: rgb(252, 163, 17);
     --cta-hover: rgb(238, 125, 33);
 
-    --font-title: "Felix Titling";
+    --font-title: "Felix";
+  }
+}
+
+@layer theme {
+  h1,
+  h2,
+  h3,
+  .title {
+    font-family: var(--font-title);
+  }
+
+  h1 {
+    letter-spacing: 0.25rem;
+    line-height: 1rem;
+
+    @media (width > 990px) {
+      letter-spacing: 0.5rem;
+    }
+  }
+
+  h2 {
+    letter-spacing: 0.25rem;
   }
 }
 
