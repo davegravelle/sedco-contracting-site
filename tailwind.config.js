@@ -9,6 +9,8 @@ export default {
         "primary-light": "var(--primary-light)",
         accent: "var(--accent)",
         "accent-light": "var(--accent-light)",
+        "accent-brown": "var(--accent-brown)",
+        "accent-slate": "var(--accent-slate)",
         cta: "var(--cta)",
         "cta-hover": "var(--cta-hover)",
       },
@@ -16,12 +18,12 @@ export default {
         primary: "var(--primary)",
       },
       fontFamily: {
-        title: ['var(--font-title)', 'Felix'],
+        title: ["var(--font-title)", "Felix"],
         serif: ["Merriweather", "serif"],
       },
       textColor: {
         primary: "white",
-        primaryHover: 'var(--primary-dark)',
+        primaryHover: "var(--primary-dark)",
         cta: "var(--primary)",
       },
     },

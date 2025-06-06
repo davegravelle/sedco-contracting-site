@@ -81,7 +81,7 @@
         type="submit"
         class="bg-cta hover:bg-cta-hover shadow-sm hover:shadow text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors ease-in duration-150"
       >
-        Send Message 
+        Send Message
       </button>
     </div>
   </form>
@@ -128,7 +128,7 @@
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         // @ts-ignore
         body: new URLSearchParams(formData).toString(),
-      })
+      });
 
       if (response.ok) {
         form.classList.add("hidden");

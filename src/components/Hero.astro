@@ -6,35 +6,33 @@ import "./Hero.css";
 import AnimatedWrapper from "./AnimatedWrapper.astro";
 ---
 
-<section 
-    class="
-        hero-bg
+<section
+  class="hero-bg
         bg-primary-dark
         font-sans
         text-primary
-        relative
-    "
+        relative"
 >
-    <div class="gradient-overlay absolute top-0 left-0 h-full w-full"></div>
-    <div 
-        class="
-            sm:grid 
-            sm:grid-cols-2 
-            gap-8 
-            items-center 
-            relative 
+  <div class="gradient-overlay absolute top-0 left-0 h-full w-full"></div>
+  <div
+    class="sm:grid
+            sm:grid-cols-2
+            gap-8
+            items-center
+            relative
             z-10"
-    >
-        <!-- Left Column -->
-        <div class="text-center sm:text-left p-8 sm:p-4 lg:p-8">
-            <!-- <h1 class="text-4xl md:text-6xl font-bold drop-shadow-xl">Sedco Companies</h1> -->
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font drop-shadow-xl">
-                We do residential and commercial construction, landscaping and snow plowing
-            </h1>
-            <!-- <p class="text-lg drop-shadow-xl">
+  >
+    <!-- Left Column -->
+    <div class="text-center sm:text-left p-8 sm:p-4 lg:p-8">
+      <!-- <h1 class="text-4xl md:text-6xl font-bold drop-shadow-xl">Sedco Companies</h1> -->
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font drop-shadow-xl">
+        We do residential and commercial construction, landscaping and snow
+        plowing
+      </h1>
+      <!-- <p class="text-lg drop-shadow-xl">
                 Trusted partner for your home remodeling needs.
             </p> -->
-            <!-- <a
+      <!-- <a
                 href="/contact"
                 class="flex
                 justify-center
@@ -52,18 +50,15 @@ import AnimatedWrapper from "./AnimatedWrapper.astro";
             >
                 Get in Touch!
             </a> -->
-        </div>
-
-        <!-- Right Column -->
-        <div class="block relative size-full lg:h-full min-h-[320px] max-w-[640px] lg:min-h-[480px]">
-            <AnimatedWrapper className="absolute inset-0 overflow-hidden">
-                    <Image
-                        src={kitchenImage}
-                        alt=""
-                        class="w-full h-full object-cover"
-                    />
-            </AnimatedWrapper>
-        </div>
     </div>
+
+    <!-- Right Column -->
+    <div
+      class="block relative size-full lg:h-full min-h-[320px] max-w-[640px] lg:min-h-[480px]"
+    >
+      <AnimatedWrapper className="absolute inset-0 overflow-hidden">
+        <Image src={kitchenImage} alt="" class="w-full h-full object-cover" />
+      </AnimatedWrapper>
+    </div>
+  </div>
 </section>
-                   

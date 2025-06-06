@@ -1,43 +1,43 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 interface Props {
-	title: string;
-	description?: string;
-	canonicalURL?: string;
+  title: string;
+  description?: string;
+  canonicalURL?: string;
 }
 
-const { 
-	title, 
-	description = "Sedco Contracting and Sedco Property Maintenance provide professional commercial and residential remodeling, landscaping, property maintenance and snow plowing services in the Rutherford, New Jersey area.", 
-	canonicalURL = Astro.url.href,
+const {
+  title,
+  description = "Sedco Contracting and Sedco Property Maintenance provide professional commercial and residential remodeling, landscaping, property maintenance and snow plowing services in the Rutherford, New Jersey area.",
+  canonicalURL = Astro.url.href,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<!-- Primary Meta Tags -->
-		<title>Sedco Companies: {title}</title>
-		<meta name="title" content={`Sedco Companies: ${title}`} />
-		<meta name="description" content={description} />
-		
-		<!-- Canonical URL -->
-		<link rel="canonical" href={canonicalURL} />
-		
-		<!-- Sitemap -->
-		<link rel="sitemap" type="application/xml" href="/sitemap-0.xml" />
-	</head>
-	<body class="bg-white">
-		<Header className="" siteName="Sedco" />
-		<slot />
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>Sedco Companies: {title}</title>
+    <meta name="title" content={`Sedco Companies: ${title}`} />
+    <meta name="description" content={description} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap-0.xml" />
+  </head>
+  <body class="bg-white">
+    <Header className="" siteName="Sedco" />
+    <slot />
+    <Footer />
+  </body>
 </html>
