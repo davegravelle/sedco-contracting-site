@@ -1,59 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// custom
-// import Images from "../components/Images.astro";
-// import Hero from "../components/Hero.astro";
+// custom components
 import MainContent from "../components/MainContent.astro";
-// import Review from "../components/Review.astro";
-// import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
-import Card from "../components/Card.astro";
 import ContentBlock from "../components/ui/ContentBlock.astro";
 import Title from "../components/ui/Title.astro";
 import Banner from "../components/ui/Banner.astro";
-
-// Import images directly
-import image1 from "../assets/kitchen-640.jpeg";
-import image2 from "../assets/landscaping1-640.jpg";
-import bannerImage from "../assets/framing-background.png";
-
-import { getServicesMainImages } from "../lib/contentful";
 import Overlay from "../components/ui/Overlay.astro";
 
-const serviceData = await getServicesMainImages();
+// Import images directly
+import bannerImage from "../assets/framing-background.png";
 
-// const cards = [
-//   {
-//     subtitle: "Commercial and residential remodeling",
-//     title: "Sedco Contracting LLC",
-//     list: ["Kitchens", "Bathrooms", "Fireplaces", "Decks & Porches", "Garages"],
-//     href: "/services#remodeling",
-//     imgSrc: image1,
-//   },
-//   {
-//     title: "Sedco Property Maintenance LLC",
-//     subtitle: "Commercial landscaping and snow removal ",
-//     list: [
-//       "Lawn maintenance",
-//       "Landscaping",
-//       "Hardscaping",
-//       "Snow plowing & removal",
-//       "Ice management",
-//     ],
-//     href: "/services#snowRemoval",
-//     imgSrc: image2,
-//   },
-// ];
+// data
+import servicesJSON from "../data/services.json";
+import { getServicesMainImages } from "../lib/contentful";
+
+const serviceData = await getServicesMainImages();
 ---
 
 <Layout title="Home">
-  <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
+  <MainContent class="pt-0 pb-0 max-w-screen-xl mx-auto bg-white">
     <Banner imgSrc={bannerImage}>
       <Title
         mobileSize="3xl"
         desktopSize="5xl"
         color="text-white"
-        fontWeight="medium"
+        fontWeight="bold"
         class="relative z-10 leading-[1.3]"
       >
         Serving the Northern
@@ -66,9 +38,9 @@ const serviceData = await getServicesMainImages();
         desktopSize="2xl"
         fontWeight="thin"
         color="text-white"
-        class="relative z-10"
+        class="relative z-10 mt-2 md:mt-4 lg:mt-6"
       >
-        since 2003
+        Since 2003
       </Title>
     </Banner>
     <!-- <section class="px-4 py-8 sm:p-8 bg-white">
@@ -82,62 +54,32 @@ const serviceData = await getServicesMainImages();
         }
       </div>
     </section> -->
+    {
+      servicesJSON.services.map((service, i) => (
+        <ContentBlock
+          contentPlacement={i % 2 === 0 ? "left" : "right"}
+          class={`${service.bgColor} ${service.bgColor.includes("light") ? "text-primary-dark" : "text-primary"}`}
+          imgSrc={service.imagePath}
+          imgAlt=""
+        >
+          <Title element="h2" desktopSize="4xl" mobileSize="3xl" class="mb-4">
+            {service.name}
+          </Title>
+          <ul class="text-xl space-y-2">
+            {service.subcategories.map((subCat) => (
+              <li>{subCat}</li>
+            ))}
+          </ul>
+        </ContentBlock>
+      ))
+    }
 
-    <ContentBlock
-      title="Construction & Remodeling"
-      contentPlacement="left"
-      class="bg-primary-dark text-primary"
-      content={`
-        <ul>
-          <li>Commercial & Residential</li>
-          <li>Kitchens & Baths</li>
-          <li>Fireplaces</li>
-          <li>Decks & Porches</li>
-          <li>Additions</li>
-        </ul>
-      `}
-      imgSrc="src/assets/kitchen-640.jpeg"
-      imgAlt=""
-    />
-    <ContentBlock
-      class="bg-accent-slate text-white"
-      title="Construction & Remodeling"
-      contentPlacement="right"
-      content={`
-        <ul>
-          <li>Commercial & Residential</li>
-          <li>Kitchens & Baths</li>
-          <li>Fireplaces</li>
-          <li>Decks & Porches</li>
-          <li>Additions</li>
-        </ul>
-      `}
-      imgSrc="src/assets/kitchen-640.jpeg"
-      imgAlt=""
-    />
-    <ContentBlock
-      class="bg-accent-beige"
-      title="Construction & Remodeling"
-      contentPlacement="center"
-      content={`
-        <ul>
-          <li>Commercial & Residential</li>
-          <li>Kitchens & Baths</li>
-          <li>Fireplaces</li>
-          <li>Decks & Porches</li>
-          <li>Additions</li>
-        </ul>
-      `}
-      imgSrc="src/assets/kitchen-640.jpeg"
-      imgAlt=""
-    />
-
-    <section class="my-16 px-4 lg:px-0">
+    <section class="my-16 px-4 lg:px-8">
       <Title
         element="h2"
         desktopSize="4xl"
         mobileSize="3xl"
-        class="text-center mb-8"
+        class="text-center mb-16"
       >
         Our Portfolio
       </Title>
@@ -188,12 +130,13 @@ const serviceData = await getServicesMainImages();
       <Title
         element="h2"
         class="text-center mb-8"
-        desktopSize="3xl"
+        desktopSize="4xl"
         mobileSize="3xl"
+        fontWeight="bold"
       >
         Get In Touch!
       </Title>
-      <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
+      <p class="max-w-md mx-auto text-primary-dark text-xl text-center mb-8">
         We're still working on the rest of our site but in the meantime we're
         happy to answer any questions you have about our services. Fill out the
         form below and we'll get back to you as soon as possible!

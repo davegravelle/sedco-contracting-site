@@ -2,7 +2,7 @@
 interface Props {
   class?: string;
 }
-const defaultClasses = "min-h-full";
+const defaultClasses = "min-h-full drop-shadow-md";
 const { class: className } = Astro.props;
 ---
 
@@ -14,4 +14,3 @@ const { class: className } = Astro.props;
 <main class={`main  ${defaultClasses} ${className}`}>
   <slot />
 </main>
-
