@@ -34,7 +34,7 @@ const navLinks: NavLink[] = [
 ---
 
 <header class={`relative z-50 ${className} bg-white shadow-md`}>
-  <div class="max-w-screen-xl mx-auto px-4 lg:px-0">
+  <div class="max-w-screen-xl mx-auto px-4 xl:px-0">
     <div class="flex justify-between items-center py-4">
       <!-- Logo and Site Name -->
       <div class="flex items-center">
@@ -43,7 +43,7 @@ const navLinks: NavLink[] = [
         </a>
       </div>
       <!-- Navigation Links -->
-      <nav class="hidden md:flex space-x-4">
+      <nav class="hidden lg:flex space-x-4">
         <ul class="flex">
           {
             navLinks.map((link) => (
@@ -81,7 +81,7 @@ const navLinks: NavLink[] = [
       </nav>
       <!-- Mobile Menu Button -->
 
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <button class="text-primary-dark focus:outline-none" id="open-drawer">
           <svg
             class="h-6 w-6"

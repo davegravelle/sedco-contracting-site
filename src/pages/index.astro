@@ -17,6 +17,11 @@ import image1 from "../assets/kitchen-640.jpeg";
 import image2 from "../assets/landscaping1-640.jpg";
 import bannerImage from "../assets/framing-background.png";
 
+import { getServicesMainImages } from "../lib/contentful";
+import Overlay from "../components/ui/Overlay.astro";
+
+const serviceData = await getServicesMainImages();
+
 // const cards = [
 //   {
 //     subtitle: "Commercial and residential remodeling",
@@ -127,8 +132,65 @@ import bannerImage from "../assets/framing-background.png";
       imgAlt=""
     />
 
+    <section class="my-16 px-4 lg:px-0">
+      <Title
+        element="h2"
+        desktopSize="4xl"
+        mobileSize="3xl"
+        class="text-center mb-8"
+      >
+        Our Portfolio
+      </Title>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8">
+        {
+          serviceData.map(
+            (service: any) =>
+              service?.mainImage?.url && (
+                <a
+                  href={`/portfolio/${service.name.toLowerCase()}`}
+                  class="group"
+                >
+                  <div class="flex justify-center relative ">
+                    <Overlay class="z-10" />
+                    <Title
+                      element="h3"
+                      mobileSize="2xl"
+                      desktopSize="3xl"
+                      class="absolute z-20 self-center transition-all duration-400 ease-in-out group-hover:scale-110 text-center"
+                      color="text-white"
+                    >
+                      {service?.name?.includes("&") ? (
+                        <div>
+                          {service.name.split("&")[0]}
+                          <div>&</div>
+                          {service.name.split("&")[1]}
+                        </div>
+                      ) : (
+                        service.name
+                      )}
+                    </Title>
+                    {service?.mainImage?.url && (
+                      <img
+                        src={`${service?.mainImage?.url}?w=420&h=420&fit=scale&f=center`}
+                        alt=""
+                        class="relative top-0 left-0 w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+                </a>
+              ),
+          )
+        }
+      </div>
+    </section>
+
     <section class="px-4 py-8 sm:p-8 bg-white">
-      <Title element="h2" class="text-center mb-8" size="3xl">
+      <Title
+        element="h2"
+        class="text-center mb-8"
+        desktopSize="3xl"
+        mobileSize="3xl"
+      >
         Get In Touch!
       </Title>
       <p class="max-w-md mx-auto text-primary-dark text-center mb-8">

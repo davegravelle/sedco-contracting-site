@@ -52,7 +52,7 @@ const {
   ...rest
 } = Astro.props;
 
-const sizeClasses = {
+const mobileSizeClasses = {
   s: "text-sm",
   m: "text-base",
   l: "text-lg",
@@ -65,6 +65,20 @@ const sizeClasses = {
   "7xl": "text-7xl",
   "8xl": "text-8xl",
   "9xl": "text-9xl",
+};
+const desktopSizeClasses = {
+  s: "lg:text-sm",
+  m: "lg:text-base",
+  l: "lg:text-lg",
+  xl: "lg:text-xl",
+  "2xl": "lg:text-2xl",
+  "3xl": "lg:text-3xl",
+  "4xl": "lg:text-4xl",
+  "5xl": "lg:text-5xl",
+  "6xl": "lg:text-6xl",
+  "7xl": "lg:text-7xl",
+  "8xl": "lg:text-8xl",
+  "9xl": "lg:text-9xl",
 };
 
 const fontWeightClasses = {
@@ -81,12 +95,11 @@ const fontWeightClasses = {
 
 const Element = element;
 const colorClass = color;
-const mobileSizeClass = sizeClasses[mobileSize];
-const desktopSizeClass = sizeClasses[desktopSize];
+const mobileSizeClass = mobileSizeClasses[mobileSize];
+const desktopSizeClass = desktopSizeClasses[desktopSize];
 const fontWeightClass = fontWeightClasses[fontWeight];
 const finalClass =
-`title ${mobileSizeClass} md:${desktopSizeClass} ${fontWeightClass} ${colorClass} ${className}`.trim();
-console.log(finalClass)
+  `title ${mobileSizeClass} ${desktopSizeClass} ${fontWeightClass} ${colorClass} ${className}`.trim();
 ---
 
 <Element class={finalClass} {...rest}>
