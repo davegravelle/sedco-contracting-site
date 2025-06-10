@@ -1,5 +1,5 @@
 ---
-import Title from "./Title.astro";
+import DynamicImage from "./DynamicImage.astro";
 
 export interface Props {
   class?: string;
@@ -33,11 +33,10 @@ const layoutClasses = getLayoutClasses();
     <div
       class={`flex-shrink-0 ${contentPlacement === "center" ? "w-full max-w-md" : "w-full md:w-1/2"}`}
     >
-      <img
-        src={imgSrc}
-        alt={imgAlt}
+      <DynamicImage
+        imagePath={imgSrc}
+        altText={imgAlt}
         class="w-full h-auto shadow-md object-cover"
-        loading="lazy"
       />
     </div>
 

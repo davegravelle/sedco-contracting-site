@@ -9,7 +9,7 @@
         "Decks & Porches",
         "Additions"
       ],
-      "imagePath": "src/assets/kitchen-640.jpeg",
+      "imagePath": "/src/assets/kitchen-640.jpeg",
       "bgColor": "bg-primary-dark"
     },
     {
@@ -19,13 +19,13 @@
         "Commercial & Residential Hardscaping",
         "Commercial & Residential Installations"
       ],
-      "imagePath": "src/assets/park-plus-resized.png",
+      "imagePath": "/src/assets/park-plus-resized.png",
       "bgColor": "bg-accent-slate"
     },
     {
       "name": "Commercial Snow Removal",
       "subcategories": ["Snow plowing and removal", "Ice Management"],
-      "imagePath": "src/assets/plows-728-480.jpg",
+      "imagePath": "/src/assets/plows-728-480.jpg",
       "bgColor": "bg-accent-light"
     }
   ]
