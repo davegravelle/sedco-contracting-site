@@ -65,20 +65,20 @@ const facilityImages = [facility1, plows, facility3, facility4];
           shop.
         </p>
       </AnimatedWrapper>
-      <div class="grid grid-cols-2 gap-4 mt-8">
+      <div class="grid sm:grid-cols-2 gap-4 mt-8">
         {
           facilityImages.map((image, i) => (
-            <AnimatedWrapper delay={i * 0.1} class="min-h-[424px]">
-              <div class="flex justify-center">
-                <img src={image.src} class="w-full h-auto" />
-              </div>
-            </AnimatedWrapper>
+            <div class="flex justify-center md:min-h-[424px]">
+              <AnimatedWrapper delay={i * 0.1}>
+                <img src={image.src} class="w-full h-auto " />
+              </AnimatedWrapper>
+            </div>
           ))
         }
       </div>
     </section>
 
-    <section id="service-areas" class="my-12 pt-12">
+    <section id="service-areas" class="my-12">
       <AnimatedWrapper>
         <Title
           desktopSize="4xl"
