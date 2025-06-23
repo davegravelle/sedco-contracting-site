@@ -12,11 +12,12 @@ export interface NavLink {
 const navLinks: NavLink[] = [
   { href: "/", text: "Home" },
   {
+    href: "/about",
     text: "About",
     subnav: [
-      { href: "/about/facilities", text: "Facilities" },
-      { href: "/about/history", text: "History" },
-      { href: "/about/service-areas", text: "Services Areas" },
+      { href: "/about#facilities", text: "Facilities" },
+      { href: "/about#history", text: "History" },
+      { href: "/about#service-areas", text: "Services Areas" },
     ],
   },
   {
@@ -72,7 +73,7 @@ const navLinks: NavLink[] = [
           {
             navLinks.map((link) => (
               <li class="relative group p-2 lg:m-2 whitespace-nowrap">
-                {link.subnav ? (
+                {!link.href ? (
                   <span class="text-primary-dark text-lg cursor-default">
                     {link.text}
                   </span>

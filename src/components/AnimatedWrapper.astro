@@ -1,18 +1,22 @@
 ---
-const { className } = Astro.props;
+const { className, delay = "0.0", transitionDuration = "0.5" } = Astro.props;
+const delayVal = `${delay}s`;
+const transitionDurationVal = `${transitionDuration}s`;
 ---
 
 <div class=`animated-wrapper ${className}`>
   <slot />
 </div>
 
-<style>
+<style define:vars={{ delayVal, transitionDurationVal }}>
   .animated-wrapper {
     opacity: 0;
     transform: translateY(10px);
     transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
+      opacity var(--transitionDurationVal) ease-out,
+      transform var(--transitionDurationVal) ease-out;
+    transition-delay: var(--delayVal);
+    transition-property: transform opacity;
   }
 
   .animated-wrapper.visible {
@@ -34,9 +38,9 @@ const { className } = Astro.props;
     },
     {
       // Add threshold to start animation when element is 10% visible
-      threshold: 0.1,
+      threshold: 0.25,
       // Add root margin to trigger slightly before element comes into view
-      rootMargin: "50px",
+      // rootMargin: "50px",
     },
   );
 
@@ -59,4 +63,3 @@ const { className } = Astro.props;
     subtree: true,
   });
 </script>
-
