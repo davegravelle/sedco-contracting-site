@@ -4,21 +4,45 @@ import HomeIcon from "./icons/HomeIcon.astro";
 const { className } = Astro.props;
 
 export interface NavLink {
-  href: string;
+  href?: string;
   text: string;
   subnav?: NavLink[];
 }
 
 const navLinks: NavLink[] = [
   { href: "/", text: "Home" },
-  { href: "/about", text: "About Us" },
-  { href: "/facilities", text: "Facilities" },
   {
-    href: "/services",
-    text: "Services",
+    text: "About",
+    subnav: [
+      { href: "/about/facilities", text: "Facilities" },
+      { href: "/about/history", text: "History" },
+      { href: "/about/service-areas", text: "Services Areas" },
+    ],
+  },
+  {
+    href: "/property-maintenance",
+    text: "Property Maintenance",
     subnav: [
       { href: "/services", text: "Services" },
-      { href: "/service-areas", text: "Service areas" },
+      {
+        href: "/portfolio",
+        text: "Portfolio",
+        subnav: [
+          { href: "/kitchens", text: "Kitchens" },
+          { href: "/Baths", text: "Baths" },
+          { href: "/Decks", text: "Decks" },
+        ],
+      },
+      { href: "/product-recommendations", text: "Product Recommendations" },
+    ],
+  },
+  {
+    href: "/construction",
+    text: "Construction",
+    subnav: [
+      { href: "/services", text: "Services" },
+      { href: "/portfolio", text: "Portfolio" },
+      { href: "/product-recommendations", text: "Product Recommendations" },
     ],
   },
   {
@@ -100,7 +124,7 @@ const navLinks: NavLink[] = [
       </div>
     </div>
   </div>
-  <Drawer isOpen={false} navLinks={navLinks} />
+  <Drawer navLinks={navLinks} />
 </header>
 
 <script>
@@ -111,14 +135,22 @@ const navLinks: NavLink[] = [
     const closeButton = document.getElementById("close-drawer");
     const openDrawer = () => {
       if (drawer && overlay) {
-        drawer.classList.remove("translate-x-full");
-        overlay.classList.remove("opacity-0", "pointer-events-none");
+        drawer.classList.add("open");
+        overlay.classList.remove(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-x-full",
+        );
       }
     };
     const closeDrawer = () => {
       if (drawer && overlay) {
-        drawer.classList.add("translate-x-full");
-        overlay.classList.add("opacity-0", "pointer-events-none");
+        drawer.classList.remove("open");
+        overlay.classList.add(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-x-0",
+        );
       }
     };
 

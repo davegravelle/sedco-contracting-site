@@ -7,10 +7,10 @@ const { class: className } = Astro.props;
 ---
 
 <style>
-  .main {
+  #main {
     min-height: calc(100vh - 200px);
   }
 </style>
-<main class={`main  ${defaultClasses} ${className}`}>
+<main id="main" class={`${defaultClasses} ${className}`}>
   <slot />
 </main>
