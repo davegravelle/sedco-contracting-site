@@ -24,9 +24,20 @@ const shouldExpand = (
   );
 };
 
-export { isActive, shouldExpand };
+export type ServiceContentfulItem = {
+  fields: {
+    name: string;
+    slug: string;
+    servicesOffered: Array<{
+      fields: {
+        name: string;
+        slug: string;
+      };
+    }>;
+  };
+};
 
-export function buildVertNav(items) {
+function buildVertNav(items: ServiceContentfulItem[]) {
   return items.map((servicesItem) => ({
     label: servicesItem.fields.name,
     slug: servicesItem.fields.slug,
@@ -38,3 +49,5 @@ export function buildVertNav(items) {
     })),
   }));
 }
+
+export { buildVertNav, isActive, shouldExpand };
