@@ -1,0 +1,152 @@
+---
+// @ts-nocheck
+import { contentfulClient } from "../../lib/contentful";
+import AnimatedWrapper from "../../components/AnimatedWrapper.astro";
+import Layout from "../../layouts/Layout.astro";
+import Banner from "../../components/ui/Banner.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import MainContent from "../../components/MainContent.astro";
+import Title from "../../components/ui/Title.astro";
+import VerticalNav from "../../components/ui/VerticalNav/VerticalNav.astro";
+
+// types
+import type { NavItem } from "../../components/VerticalNav.astro";
+import service from "@astrojs/image/sharp";
+
+// images
+import kitchen from "../../assets/kitchen-640.jpeg";
+import lawn from "../../assets/park-plus-resized.png";
+import { buildVertNav } from "../../components/ui/VerticalNav/verticalNav.helpers";
+
+// TODO: consolidate this logic in lib/contentful
+export async function getStaticPaths() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "services",
+  });
+
+  const navItems: NavItem[] = buildVertNav(entries.items);
+
+  const paths = entries.items.map((item) => {
+    const { description, name, servicesOffered, slug } = item.fields;
+
+    return {
+      params: {
+        serviceType: slug,
+      },
+      props: {
+        description,
+        name,
+        navItems,
+        slug,
+        services: servicesOffered,
+      },
+    };
+  });
+
+  return paths;
+}
+
+const { serviceType } = Astro.params;
+const { description, name, navItems, slug, services } = Astro.props;
+
+const breadcrumbItems = [{ label: name as string, href: "" }];
+---
+
+<Layout title={name as string}>
+  {
+    serviceType === "construction" ? (
+      <Banner imgSrc={kitchen}>
+        {/* <AnimatedWrapper> */}
+        <Title
+          mobileSize="5xl"
+          desktopSize="7xl"
+          color="text-white"
+          fontWeight="bold"
+          class="relative z-10"
+        >
+          Construction & Remodeling
+        </Title>
+        <Title
+          element="h2"
+          mobileSize="3xl"
+          desktopSize="3xl"
+          fontWeight="thin"
+          color="text-white"
+          class="relative z-10 mt-2 md:mt-4 lg:mt-6"
+        >
+          Commercial & Residential
+        </Title>
+        {/* </AnimatedWrapper> */}
+      </Banner>
+    ) : (
+      <Banner imgSrc={lawn}>
+        {/* <AnimatedWrapper delay="0.25"> */}
+        <Title
+          mobileSize="5xl"
+          desktopSize="7xl"
+          color="text-white"
+          fontWeight="bold"
+          class="relative z-10"
+        >
+          Property Maintenance
+        </Title>
+        <Title
+          element="h2"
+          mobileSize="3xl"
+          desktopSize="3xl"
+          fontWeight="thin"
+          color="text-white"
+          class="relative z-10 mt-2 md:mt-4 lg:mt-6"
+        >
+          Commercial & Select Residential
+        </Title>
+        {/* </AnimatedWrapper> */}
+      </Banner>
+    )
+  }
+  <MainContent class="max-w-screen-xl mx-auto px-4 py-8">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <div class="flex gap-8">
+      <VerticalNav
+        items={navItems}
+        activePath={slug as string}
+        expandible={false}
+      />
+
+      <div class="flex-1">
+        <h2
+          class="text-4xl font-title font-bold text-primary-dark mb-12 text-center lg:text-left"
+        >
+          {name}
+        </h2>
+        <p class="my-12">{description}</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            services?.map((service) => (
+              <a
+                href={`/${serviceType}/portfolio/${service.fields.slug}`}
+                class="group transition-all duration-300 p-8S text-center col-span-1 overflow-hidden flex justify-center"
+              >
+                <div class="w-full h-64 max-w-[360px] max-h-[360px] object-cover shadow-md hover:shadow-xl relative">
+                  <div class="absolute inset-0 w-full h-full bg-gray-800/20 group-hover:bg-gray-800/30 transition-colors z-10" />
+                  <h2 class="text-3xl font-title font-semibold text-white relative z-20 p-4 group-hover:scale-105 origin-center transition-all">
+                    {service.fields.name}
+                  </h2>
+                  {service?.fields?.images?.[0]?.fields?.file?.url && (
+                    <img
+                      class="absolute top-0 left-0 w-full min-h-64 object-cover"
+                      src={service?.fields?.images?.[0]?.fields?.file?.url}
+                      alt={""}
+                    />
+                  )}
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </MainContent>
+</Layout>

@@ -4,21 +4,12 @@ import Layout from "../layouts/Layout.astro";
 import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import MainContent from "../components/MainContent.astro";
 import ContactForm from "../components/ContactForm.astro";
-import ContentBlock from "../components/ui/ContentBlock.astro";
 import Title from "../components/ui/Title.astro";
 import Banner from "../components/ui/Banner.astro";
-import Overlay from "../components/ui/Overlay.astro";
 
 // Import images directly
-import bannerImage from "../assets/framing-background.png";
 import kitchen from "../assets/kitchen-640.jpeg";
 import lawn from "../assets/park-plus-resized.png";
-
-// data
-import servicesJSON from "../data/services.json";
-import { getServicesMainImages } from "../lib/contentful";
-
-const serviceData = await getServicesMainImages();
 ---
 
 <Layout title="Home">
@@ -80,8 +71,8 @@ const serviceData = await getServicesMainImages();
         }
       </div>
     </section> -->
-    <section class="flex flex-col">
-      <!-- {
+    <!-- <section class="flex flex-col"> -->
+    <!-- {
         servicesJSON.services.map((service, i) => (
           <ContentBlock
             contentPlacement={i % 2 === 0 ? "left" : "right"}
@@ -101,7 +92,7 @@ const serviceData = await getServicesMainImages();
         ))
       } -->
 
-      <section class="my-16 px-4 lg:px-8 container mx-auto">
+    <!-- <section class="my-16 px-4 lg:px-8 container mx-auto">
         <Title
           element="h2"
           desktopSize="4xl"
@@ -115,10 +106,7 @@ const serviceData = await getServicesMainImages();
             serviceData.map(
               (service: any, index: number) =>
                 service?.mainImage?.url && (
-                  <a
-                    href={`/portfolio/${service.name.toLowerCase()}`}
-                    class="group"
-                  >
+                  <a href={`/portfolio/${service.slug}`} class="group">
                     <AnimatedWrapper delay={index * 0.15}>
                       <div class="flex justify-center relative ">
                         <Overlay class="z-10" />
@@ -153,32 +141,28 @@ const serviceData = await getServicesMainImages();
             )
           }
         </div>
-      </section>
+      </section> -->
 
-      <section class="px-4 py-8 sm:p-8 bg-white">
-        <AnimatedWrapper>
-          <Title
-            element="h2"
-            class="text-center mb-8"
-            desktopSize="4xl"
-            mobileSize="3xl"
-            fontWeight="bold"
-          >
-            Get In Touch!
-          </Title>
-          <p
-            class="max-w-md mx-auto text-primary-dark text-xl text-center mb-8"
-          >
-            We're still working on the rest of our site but in the meantime
-            we're happy to answer any questions you have about our services.
-            Fill out the form below and we'll get back to you as soon as
-            possible!
-          </p>
-        </AnimatedWrapper>
-        <AnimatedWrapper>
-          <ContactForm />
-        </AnimatedWrapper>
-      </section>
+    <section class="px-4 py-8 sm:p-8 bg-white">
+      <AnimatedWrapper>
+        <Title
+          element="h2"
+          class="text-center mb-8"
+          desktopSize="4xl"
+          mobileSize="3xl"
+          fontWeight="bold"
+        >
+          Get In Touch!
+        </Title>
+        <p class="max-w-md mx-auto text-primary-dark text-xl text-center mb-8">
+          We're still working on the rest of our site but in the meantime we're
+          happy to answer any questions you have about our services. Fill out
+          the form below and we'll get back to you as soon as possible!
+        </p>
+      </AnimatedWrapper>
+      <AnimatedWrapper>
+        <ContactForm />
+      </AnimatedWrapper>
     </section>
   </MainContent>
 </Layout>

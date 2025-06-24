@@ -1,0 +1,36 @@
+---
+import Caret from "./icons/Caret.astro";
+import HomeIcon from "./icons/HomeIcon.astro";
+
+interface Props {
+  items: {
+    label: string;
+    href?: string;
+  }[];
+}
+const { items } = Astro.props;
+---
+
+<nav class="text-gray-600 mb-8">
+  <ul class="flex items-center gap-1 text-sm">
+    <li class="">
+      <a href="/" class="capitalize hover:underline transition">
+        <HomeIcon />
+      </a>
+    </li>
+    {
+      items.map((item, index) => (
+        <li class="flex gap-1 items-center">
+          <Caret />
+          {item.href ? (
+            <a href={item.href} class="capitalize hover:underline transition">
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-gray-500">{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

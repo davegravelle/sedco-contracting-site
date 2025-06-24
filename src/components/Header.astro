@@ -1,7 +1,8 @@
 ---
 import Drawer from "./Drawer.astro";
-import HomeIcon from "./icons/HomeIcon.astro";
+import LogoIcon from "./icons/LogoIcon.astro";
 const { className } = Astro.props;
+const { serviceType } = Astro.params;
 
 export interface NavLink {
   href?: string;
@@ -24,16 +25,7 @@ const navLinks: NavLink[] = [
     href: "/property-maintenance",
     text: "Property Maintenance",
     subnav: [
-      { href: "/services", text: "Services" },
-      {
-        href: "/portfolio",
-        text: "Portfolio",
-        subnav: [
-          { href: "/kitchens", text: "Kitchens" },
-          { href: "/Baths", text: "Baths" },
-          { href: "/Decks", text: "Decks" },
-        ],
-      },
+      { href: "/property-maintenance", text: "Services" },
       { href: "/product-recommendations", text: "Product Recommendations" },
     ],
   },
@@ -41,8 +33,7 @@ const navLinks: NavLink[] = [
     href: "/construction",
     text: "Construction",
     subnav: [
-      { href: "/services", text: "Services" },
-      { href: "/portfolio", text: "Portfolio" },
+      { href: "/construction", text: "Services" },
       { href: "/product-recommendations", text: "Product Recommendations" },
     ],
   },
@@ -64,7 +55,7 @@ const navLinks: NavLink[] = [
       <!-- Logo and Site Name -->
       <div class="flex items-center">
         <a href="/" class="mr-4" aria-label="Home">
-          <HomeIcon className="max-w-full sm:max-w-[360px]" />
+          <LogoIcon className="max-w-full sm:max-w-[360px]" />
         </a>
       </div>
       <!-- Navigation Links -->
