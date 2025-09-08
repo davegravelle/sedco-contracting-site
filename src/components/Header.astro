@@ -1,24 +1,40 @@
 ---
 import Drawer from "./Drawer.astro";
-import HomeIcon from "./icons/HomeIcon.astro";
+import LogoIcon from "./icons/LogoIcon.astro";
 const { className } = Astro.props;
+const { serviceType } = Astro.params;
 
 export interface NavLink {
-  href: string;
+  href?: string;
   text: string;
   subnav?: NavLink[];
 }
 
 const navLinks: NavLink[] = [
   { href: "/", text: "Home" },
-  { href: "/about", text: "About Us" },
-  { href: "/facilities", text: "Facilities" },
   {
-    href: "/services",
-    text: "Services",
+    href: "/about",
+    text: "About",
     subnav: [
-      { href: "/services", text: "Services" },
-      { href: "/service-areas", text: "Service areas" },
+      { href: "/about#facilities", text: "Facilities" },
+      { href: "/about#history", text: "History" },
+      { href: "/about#service-areas", text: "Services Areas" },
+    ],
+  },
+  {
+    href: "/property-maintenance",
+    text: "Property Maintenance",
+    subnav: [
+      { href: "/property-maintenance", text: "Services" },
+      { href: "/product-recommendations", text: "Product Recommendations" },
+    ],
+  },
+  {
+    href: "/construction",
+    text: "Construction",
+    subnav: [
+      { href: "/construction", text: "Services" },
+      { href: "/product-recommendations", text: "Product Recommendations" },
     ],
   },
   {
@@ -34,85 +50,110 @@ const navLinks: NavLink[] = [
 ---
 
 <header class={`relative z-50 ${className} bg-white shadow-md`}>
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-8">
+  <div class="max-w-screen-xl mx-auto px-4 xl:px-0">
     <div class="flex justify-between items-center py-4">
       <!-- Logo and Site Name -->
       <div class="flex items-center">
         <a href="/" class="mr-4" aria-label="Home">
-            <HomeIcon className="max-w-full sm:max-w-[360px]" />
+          <LogoIcon className="max-w-full sm:max-w-[360px]" />
         </a>
       </div>
       <!-- Navigation Links -->
-      <nav class="hidden md:flex space-x-4">
+      <nav class="hidden lg:flex space-x-4">
         <ul class="flex">
-          {navLinks.map((link) => (
-            <li class="relative group p-2 lg:m-2 whitespace-nowrap">
-              {link.subnav ? (
-                <span class="text-primary-dark text-lg cursor-default">
-                  {link.text}
-                </span>
-              ) : (
-                <a href={link.href} class="text-primary-dark text-lg hover:underline hover:underline-offset-8">
-                  {link.text}
-                </a>
-              )}
-              {link.subnav && (
-                <ul class="absolute right-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded">
-                  {link.subnav.map((sublink) => (
-                    <li>
-                      <a href={sublink.href} class="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100">
-                        {sublink.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
+          {
+            navLinks.map((link) => (
+              <li class="relative group p-2 lg:m-2 whitespace-nowrap">
+                {!link.href ? (
+                  <span class="text-primary-dark text-lg cursor-default">
+                    {link.text}
+                  </span>
+                ) : (
+                  <a
+                    href={link.href}
+                    class="text-primary-dark text-lg hover:underline hover:underline-offset-8"
+                  >
+                    {link.text}
+                  </a>
+                )}
+                {link.subnav && (
+                  <ul class="absolute right-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded">
+                    {link.subnav.map((sublink) => (
+                      <li>
+                        <a
+                          href={sublink.href}
+                          class="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                        >
+                          {sublink.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))
+          }
         </ul>
       </nav>
       <!-- Mobile Menu Button -->
 
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <button class="text-primary-dark focus:outline-none" id="open-drawer">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
       </div>
-      
     </div>
   </div>
-  <Drawer isOpen={false} navLinks={navLinks} />
+  <Drawer navLinks={navLinks} />
 </header>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const drawer = document.getElementById('drawer');
-    const overlay = document.getElementById('drawer-overlay');
-    const openButton = document.getElementById('open-drawer');
-    const closeButton = document.getElementById('close-drawer');
+  document.addEventListener("DOMContentLoaded", () => {
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("drawer-overlay");
+    const openButton = document.getElementById("open-drawer");
+    const closeButton = document.getElementById("close-drawer");
     const openDrawer = () => {
       if (drawer && overlay) {
-        drawer.classList.remove('translate-x-full');
-        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        drawer.classList.add("open");
+        overlay.classList.remove(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-x-full",
+        );
       }
     };
     const closeDrawer = () => {
       if (drawer && overlay) {
-        drawer.classList.add('translate-x-full');
-        overlay.classList.add('opacity-0', 'pointer-events-none');
+        drawer.classList.remove("open");
+        overlay.classList.add(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-x-0",
+        );
       }
     };
 
     if (openButton) {
-      openButton.addEventListener('click', openDrawer);
+      openButton.addEventListener("click", openDrawer);
     }
     if (closeButton) {
-      closeButton.addEventListener('click', closeDrawer);
+      closeButton.addEventListener("click", closeDrawer);
     }
     if (overlay) {
-      overlay.addEventListener('click', closeDrawer);
+      overlay.addEventListener("click", closeDrawer);
     }
   });
 </script>

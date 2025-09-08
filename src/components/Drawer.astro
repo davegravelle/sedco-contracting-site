@@ -1,18 +1,45 @@
 ---
-import type { NavLink } from './Header.astro';
+import type { NavLink } from "./Header.astro";
 const { isOpen, navLinks } = Astro.props;
 ---
 
+<style>
+  #drawer {
+    display: none;
+    opacity: 0;
+    transform: translateX(100%);
+    transition:
+      opacity 0.3s,
+      transform 0.5s,
+      display 0.5s;
+    transition-behavior: allow-discrete;
+  }
+
+  #drawer.open {
+    transform: translateX(0%);
+    display: block;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+</style>
 <div
-  class={`fixed z-20 inset-0 bg-black bg-opacity-50 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+  class="fixed z-20 inset-0 bg-black bg-opacity-50 opacity-0 translate-x-full transition-opacity"
   id="drawer-overlay"
 >
 </div>
 <div
-  class={`fixed z-50 top-0 right-0 w-64 bg-white h-full shadow-lg transform transition-transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+  class="fixed z-50 top-0 right-0 w-64 bg-white h-full shadow-lg"
   id="drawer"
 >
-  <button class="absolute top-4 right-4 text-primary-dark" aria-label="toggle drawer" id="close-drawer">
+  <button
+    class="absolute top-4 right-4 text-primary-dark"
+    aria-label="toggle drawer"
+    id="close-drawer"
+  >
     <!-- Close Icon -->
     <svg
       class="h-6 w-6"
@@ -29,27 +56,29 @@ const { isOpen, navLinks } = Astro.props;
     </svg>
   </button>
   <nav class="mt-16 space-y-4 z-50">
-    {navLinks.map((link: NavLink) => (
-      <div>
-        <a
-          href={link.href}
-          class="block px-4 py-2 text-primary-dark hover:underline"
-        >
-          {link.text}
-        </a>
-        {link.subnav && (
-          <div class="ml-4 space-y-2">
-            {link.subnav.map((sublink) => (
-              <a
-                href={sublink.href}
-                class="block px-4 py-2 text-sm text-primary-dark hover:underline"
-              >
-                {sublink.text}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-    ))}
+    {
+      navLinks.map((link: NavLink) => (
+        <div>
+          <a
+            href={link.href}
+            class="block px-4 py-2 text-primary-dark hover:underline"
+          >
+            {link.text}
+          </a>
+          {link.subnav && (
+            <div class="ml-4 space-y-2">
+              {link.subnav.map((sublink) => (
+                <a
+                  href={sublink.href}
+                  class="block px-4 py-2 text-sm text-primary-dark hover:underline"
+                >
+                  {sublink.text}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))
+    }
   </nav>
 </div>

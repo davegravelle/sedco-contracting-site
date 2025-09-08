@@ -1,6 +1,6 @@
 ---
 export interface InputConfig {
-  type: 'text' | 'email' | 'number' | 'tel' | 'select' | 'textarea';
+  type: "text" | "email" | "number" | "tel" | "select" | "textarea";
   name: string;
   label: string;
   required?: boolean;
@@ -31,46 +31,51 @@ const { inputs } = Astro.props;
       </label>
     </p>
 
-    {inputs.map(input => (
-      <div class="mb-4">
-        <label for={input.name} class="block text-sm font-bold mb-2 text-primary-dark">
-          {input.label}
-        </label>
-        {(
-            input.type === 'text' 
-            || input.type === 'email'
-            || input.type === 'tel'
-            || input.type === 'number'
-        ) ? (
-          <input
-            type={input.type}
-            id={input.name}
-            name={input.name}
-            required={input.required}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        ) : input.type === 'select' ? (
-          <select
-            id={input.name}
-            name={input.name}
-            required={input.required}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    {
+      inputs.map((input) => (
+        <div class="mb-4">
+          <label
+            for={input.name}
+            class="block text-sm font-bold mb-2 text-primary-dark"
           >
-            <option value="" disabled selected>Select an option</option>
-            {input.options?.map(option => (
-              <option value={option.value}>{option.label}</option>
-            ))}
-          </select>
-        ) : input.type === 'textarea' ? (
-          <textarea
-            id={input.name}
-            name={input.name}
-            required={input.required}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          ></textarea>
-        ) : null}
-      </div>
-    ))}
+            {input.label}
+          </label>
+          {input.type === "text" ||
+          input.type === "email" ||
+          input.type === "tel" ||
+          input.type === "number" ? (
+            <input
+              type={input.type}
+              id={input.name}
+              name={input.name}
+              required={input.required}
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          ) : input.type === "select" ? (
+            <select
+              id={input.name}
+              name={input.name}
+              required={input.required}
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            >
+              <option value="" disabled selected>
+                Select an option
+              </option>
+              {input.options?.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          ) : input.type === "textarea" ? (
+            <textarea
+              id={input.name}
+              name={input.name}
+              required={input.required}
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          ) : null}
+        </div>
+      ))
+    }
     <div class="flex items-center justify-between">
       <button
         type="submit"
@@ -100,7 +105,9 @@ const { inputs } = Astro.props;
 
 <script>
   const form = document.getElementById("dynamicForm") as HTMLFormElement;
-  const successMessage = document.getElementById("successMessage") as HTMLElement;
+  const successMessage = document.getElementById(
+    "successMessage",
+  ) as HTMLElement;
   const errorMessage = document.getElementById("errorMessage") as HTMLElement;
 
   const hideMessages = () => {
@@ -136,4 +143,5 @@ const { inputs } = Astro.props;
       console.error("Error:", error);
     }
   });
-</script> 
+</script>
+

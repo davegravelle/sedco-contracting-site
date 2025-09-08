@@ -1,35 +1,113 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import MainContent from "../components/MainContent.astro";
+import Title from "../components/ui/Title.astro";
+
+// images
+import serviceAreaImg from "../assets/service-area.jpg";
+import facility1 from "../assets/facility1-480.jpg";
+import plows from "../assets/plows-480.jpg";
+import facility3 from "../assets/facility3-480.jpg";
+import facility4 from "../assets/facility4-480.jpg";
+const facilityImages = [facility1, plows, facility3, facility4];
 ---
 
 <Layout title="About Us">
-  <MainContent class="max-w-4xl mx-auto bg-accent-light px-4 pt-8 pb-8">
-    <AnimatedWrapper>
-      <h1 class="text-4xl text-primary-dark font-bold text-center mb-12">
-        About Us
-      </h1>
-    </AnimatedWrapper>
-
-    <div class="max-w-4xl mx-auto">
+  <MainContent class="container max-w-4xl mx-auto px-4 pt-8 pb-8">
+    <section id="history" class="my-8">
       <AnimatedWrapper>
-        <div class="space-y-6">
-          <p>
-            Sedco Contracting is a Rutherford based construction company founded
-            in 2003 originally specializing in interior projects. In 2021 we
-            purchased a local commercial landscaping company which allows us to
-            accommodate exterior hardscape projects, service an entirely new
-            customer base, and aid in the existing remodeling company. Since our
-            inception we have focused on efficiency in preparedness and
-            procedures, competitive costs, quality in labor and materials, and
-            customer service and communication. We continually strive to improve
-            the aforementioned focus in order to provide the best customer
-            experience regardless of which service of ours is requested.
-          </p>
-        </div>
+        <Title
+          desktopSize="4xl"
+          mobileSize="4xl"
+          class="text-center mb-12"
+          element="h1"
+        >
+          About Us
+        </Title>
       </AnimatedWrapper>
-    </div>
+      <AnimatedWrapper class="min-h-[200px]">
+        <p class="leading-8">
+          Sedco Contracting is a Rutherford based construction company founded
+          in 2003 originally specializing in interior projects. In 2021 we
+          purchased a local commercial landscaping company which allows us to
+          accommodate exterior hardscape projects, service an entirely new
+          customer base, and aid in the existing remodeling company. Since our
+          inception we have focused on efficiency in preparedness and
+          procedures, competitive costs, quality in labor and materials, and
+          customer service and communication. We continually strive to improve
+          the aforementioned focus in order to provide the best customer
+          experience regardless of which service of ours is requested.
+        </p>
+      </AnimatedWrapper>
+    </section>
+    <section id="facilities" class="my-8 pt-8">
+      <AnimatedWrapper>
+        <Title
+          desktopSize="4xl"
+          mobileSize="4xl"
+          class="text-4xl text-center text-primary-dark font-bold mb-12"
+          element="h2"
+        >
+          Facilities & Equipment
+        </Title>
+      </AnimatedWrapper>
+      <AnimatedWrapper class="min-h-[130px]">
+        <p class="text-primary-dark leading-8">
+          In order to provide a consistent quality product efficiently, we
+          believe it is essential to provide our teams with all the materials
+          and equipment they need at their fingertips. As a result, each team
+          has a truck specifically equipped with the tools and materials needed
+          for their specialty. In addition, each team has daily access to
+          Sedco's fully stocked warehouse, Sedco's support vehicles and
+          machinery, Sedco's mason/landscape yard, and Sedco's wood-working
+          shop.
+        </p>
+      </AnimatedWrapper>
+      <div class="grid sm:grid-cols-2 gap-4 mt-8">
+        {
+          facilityImages.map((image, i) => (
+            <div class="flex justify-center md:min-h-[424px]">
+              <AnimatedWrapper delay={i * 0.1}>
+                <img src={image.src} class="w-full h-auto " />
+              </AnimatedWrapper>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="service-areas" class="my-12">
+      <AnimatedWrapper>
+        <Title
+          desktopSize="4xl"
+          mobileSize="4xl"
+          class="text-center my-12"
+          element="h2"
+        >
+          Our Service Areas
+        </Title>
+      </AnimatedWrapper>
+      <div class="grid sm:grid-cols-2 md:grid-cols-2 gap-8">
+        <AnimatedWrapper>
+          <div class="col-span-1">
+            <p class="text-primary-dark mb-4 leading-8">
+              We proudly serve the following areas with our top-notch services.
+              Our team is equipped to handle projects in various locations,
+              ensuring quality and efficiency.
+            </p>
+            <!-- <ul class="list-disc list-inside">
+              {serviceAreas.map((area) => <li>{area}</li>)}
+            </ul> -->
+          </div>
+        </AnimatedWrapper>
+        <div class="col-span-1 relative">
+          <AnimatedWrapper>
+            <Image src={serviceAreaImg} alt="" />
+          </AnimatedWrapper>
+        </div>
+      </div>
+    </section>
   </MainContent>
 </Layout>
-

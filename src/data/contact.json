@@ -9,8 +9,18 @@
       { "type": "text", "name": "name", "label": "Name", "required": true },
       { "type": "email", "name": "email", "label": "Email", "required": true },
       { "type": "tel", "name": "phone", "label": "Phone", "required": false },
-      { "type": "text", "name": "location", "label": "Location", "required": false },
-      { "type": "textarea", "name": "projectDescription", "label": "Description of project", "required": true }
+      {
+        "type": "text",
+        "name": "location",
+        "label": "Location",
+        "required": false
+      },
+      {
+        "type": "textarea",
+        "name": "projectDescription",
+        "label": "Description of project",
+        "required": true
+      }
     ]
   },
   "general-questions": {
@@ -22,7 +32,12 @@
     "formInputs": [
       { "type": "text", "name": "name", "label": "Name", "required": true },
       { "type": "email", "name": "email", "label": "Email", "required": true },
-      { "type": "textarea", "name": "message", "label": "Message", "required": true }
+      {
+        "type": "textarea",
+        "name": "message",
+        "label": "Message",
+        "required": true
+      }
     ]
   },
   "job-opportunities": {
@@ -35,8 +50,18 @@
       { "type": "text", "name": "name", "label": "Name", "required": true },
       { "type": "email", "name": "email", "label": "Email", "required": true },
       { "type": "tel", "name": "phone", "label": "Phone", "required": false },
-      { "type": "number", "name": "years-experience", "label": "Years of experience", "required": true },
-      { "type": "textarea", "name": "skills", "label": "Description of skills", "required": true }
+      {
+        "type": "number",
+        "name": "years-experience",
+        "label": "Years of experience",
+        "required": true
+      },
+      {
+        "type": "textarea",
+        "name": "skills",
+        "label": "Description of skills",
+        "required": true
+      }
     ]
   }
-} 
+}

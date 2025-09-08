@@ -7,4 +7,7 @@ interface ContactPage {
   formInputs: InputConfig[];
 }
 
-export const contactPages: Record<string, ContactPage> = contactData as Record<string, ContactPage>; 
+export const contactPages: Record<string, ContactPage> = contactData as Record<
+  string,
+  ContactPage
+>;

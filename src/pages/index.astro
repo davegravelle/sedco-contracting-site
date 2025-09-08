@@ -1,52 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// custom
-// import Images from "../components/Images.astro";
-// import Hero from "../components/Hero.astro";
+// custom components
+import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import MainContent from "../components/MainContent.astro";
-// import Review from "../components/Review.astro";
-// import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 import ContactForm from "../components/ContactForm.astro";
-import Card from "../components/Card.astro";
-
+import Title from "../components/ui/Title.astro";
+import Banner from "../components/ui/Banner.astro";
 
 // Import images directly
-import image1 from "../assets/kitchen-640.jpeg";
-import image2 from "../assets/landscaping1-640.jpg";
-
-const cards = [
-  {
-    subtitle: "Commercial and residential remodeling",
-    title: "Sedco Contracting LLC",
-    list: [
-      "Kitchens",
-      "Bathrooms",
-      "Fireplaces",
-      "Decks & Porches",
-      "Garages",
-    ],
-    href: "/services#remodeling",
-    imgSrc: image1,
-  },
-  {
-    title: "Sedco Property Maintenance LLC",
-    subtitle: "Commercial landscaping and snow removal ",
-    list: [
-      "Lawn maintenance",
-      "Landscaping",
-      "Hardscaping",
-      "Snow plowing & removal",
-      "Ice management",
-    ],
-    href: "/services#snowRemoval",
-    imgSrc: image2,
-  },
-];
+import kitchen from "../assets/kitchen-640.jpeg";
+import lawn from "../assets/park-plus-resized.png";
 ---
 
 <Layout title="Home">
-  <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
-    <section class="px-4 py-8 sm:p-8 bg-white">
+  <MainContent class="pt-0 pb-0 mx-auto bg-white">
+    <Banner imgSrc={kitchen}>
+      <AnimatedWrapper>
+        <Title
+          mobileSize="5xl"
+          desktopSize="7xl"
+          color="text-white"
+          fontWeight="bold"
+          class="relative z-10"
+        >
+          Construction & Remodeling
+        </Title>
+        <Title
+          element="h2"
+          mobileSize="3xl"
+          desktopSize="3xl"
+          fontWeight="thin"
+          color="text-white"
+          class="relative z-10 mt-2 md:mt-4 lg:mt-6"
+        >
+          Commercial & Residential
+        </Title>
+      </AnimatedWrapper>
+    </Banner>
+    <Banner imgSrc={lawn}>
+      <AnimatedWrapper delay="0.25">
+        <Title
+          mobileSize="5xl"
+          desktopSize="7xl"
+          color="text-white"
+          fontWeight="bold"
+          class="relative z-10"
+        >
+          Property Maintenance
+        </Title>
+        <Title
+          element="h2"
+          mobileSize="3xl"
+          desktopSize="3xl"
+          fontWeight="thin"
+          color="text-white"
+          class="relative z-10 mt-2 md:mt-4 lg:mt-6"
+        >
+          Commercial & Select Residential
+        </Title>
+      </AnimatedWrapper>
+    </Banner>
+    <!-- <section class="px-4 py-8 sm:p-8 bg-white">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
         {
           cards.map((card) => (
@@ -56,18 +70,99 @@ const cards = [
           ))
         }
       </div>
-    </section>
+    </section> -->
+    <!-- <section class="flex flex-col"> -->
+    <!-- {
+        servicesJSON.services.map((service, i) => (
+          <ContentBlock
+            contentPlacement={i % 2 === 0 ? "left" : "right"}
+            class={` ${service.bgColor} ${service.bgColor.includes("light") ? "text-primary-dark" : "text-primary"}`}
+            imgSrc={service.imagePath}
+            imgAlt=""
+          >
+            <Title element="h2" desktopSize="4xl" mobileSize="3xl" class="mb-4">
+              {service.name}
+            </Title>
+            <ul class="text-xl space-y-2">
+              {service.subcategories.map((subCat) => (
+                <li>{subCat}</li>
+              ))}
+            </ul>
+          </ContentBlock>
+        ))
+      } -->
+
+    <!-- <section class="my-16 px-4 lg:px-8 container mx-auto">
+        <Title
+          element="h2"
+          desktopSize="4xl"
+          mobileSize="3xl"
+          class="text-center mb-16"
+        >
+          Our Portfolio
+        </Title>
+        <div class="grid md:grid-cols-3 gap-4 lg:gap-8">
+          {
+            serviceData.map(
+              (service: any, index: number) =>
+                service?.mainImage?.url && (
+                  <a href={`/portfolio/${service.slug}`} class="group">
+                    <AnimatedWrapper delay={index * 0.15}>
+                      <div class="flex justify-center relative ">
+                        <Overlay class="z-10" />
+                        <Title
+                          element="h3"
+                          mobileSize="3xl"
+                          desktopSize="4xl"
+                          class="absolute z-20 self-center transition-all duration-400 ease-in-out group-hover:scale-110 text-center"
+                          color="text-white"
+                        >
+                          {service?.name?.includes("&") ? (
+                            <div>
+                              {service.name.split("&")[0]}
+                              <div>&</div>
+                              {service.name.split("&")[1]}
+                            </div>
+                          ) : (
+                            service.name
+                          )}
+                        </Title>
+                        {service?.mainImage?.url && (
+                          <img
+                            src={`${service?.mainImage?.url}?w=420&h=420&fit=scale&f=center`}
+                            alt=""
+                            class="relative top-0 left-0 w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                    </AnimatedWrapper>
+                  </a>
+                ),
+            )
+          }
+        </div>
+      </section> -->
 
     <section class="px-4 py-8 sm:p-8 bg-white">
-      <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
-        Get In Touch!
-      </h1>
-      <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
-        We're still working on the rest of our site but in the meantime we're
-        happy to answer any questions you have about our services. Fill out the
-        form below and we'll get back to you as soon as possible!
-      </p>
-      <ContactForm />
+      <AnimatedWrapper>
+        <Title
+          element="h2"
+          class="text-center mb-8"
+          desktopSize="4xl"
+          mobileSize="3xl"
+          fontWeight="bold"
+        >
+          Get In Touch!
+        </Title>
+        <p class="max-w-md mx-auto text-primary-dark text-xl text-center mb-8">
+          We're still working on the rest of our site but in the meantime we're
+          happy to answer any questions you have about our services. Fill out
+          the form below and we'll get back to you as soon as possible!
+        </p>
+      </AnimatedWrapper>
+      <AnimatedWrapper>
+        <ContactForm />
+      </AnimatedWrapper>
     </section>
   </MainContent>
 </Layout>

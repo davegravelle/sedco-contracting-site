@@ -1,0 +1,32 @@
+{
+  "services": [
+    {
+      "name": "Construction & Remodeling",
+      "subcategories": [
+        "Commercial & Residential",
+        "Kitchens & Baths",
+        "Fireplaces",
+        "Decks & Porches",
+        "Additions"
+      ],
+      "imagePath": "/src/assets/kitchen-640.jpeg",
+      "bgColor": "bg-primary-dark"
+    },
+    {
+      "name": "Landscaping",
+      "subcategories": [
+        "Commercial Lawn Maintenance",
+        "Commercial & Residential Hardscaping",
+        "Commercial & Residential Installations"
+      ],
+      "imagePath": "/src/assets/park-plus-resized.png",
+      "bgColor": "bg-accent-slate"
+    },
+    {
+      "name": "Commercial Snow Removal",
+      "subcategories": ["Snow plowing and removal", "Ice Management"],
+      "imagePath": "/src/assets/plows-728-480.jpg",
+      "bgColor": "bg-accent-light"
+    }
+  ]
+}
