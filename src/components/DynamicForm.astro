@@ -8,16 +8,17 @@ export interface InputConfig {
 }
 
 interface Props {
+  formName: string;
   inputs: InputConfig[];
 }
 
-const { inputs } = Astro.props;
+const { formName, inputs } = Astro.props;
 ---
 
 <div class="form-container">
   <form
     id="dynamicForm"
-    name="dynamic"
+    name={formName}
     method="POST"
     data-netlify="true"
     netlify-honeypot="bot-field"
