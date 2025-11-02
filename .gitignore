@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# auto-generated Netlify forms registry
+public/netlify-forms.html
+
 # dependencies
 node_modules/
 
