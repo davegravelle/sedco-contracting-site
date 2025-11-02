@@ -18,6 +18,8 @@ if (!page) {
 }
 
 const { title, questions, formInputs } = page;
+// Use the slug (contact param) as the form name for consistency with Netlify
+const formName = contact || title.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <Layout title={title}>
@@ -32,7 +34,7 @@ const { title, questions, formInputs } = page;
         ))}
       </div>
       <div>
-        <DynamicForm inputs={formInputs} formName={title} />
+        <DynamicForm inputs={formInputs} formName={formName} />
       </div>
     </div>
   </MainContent>

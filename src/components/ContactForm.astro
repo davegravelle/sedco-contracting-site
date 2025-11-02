@@ -123,11 +123,19 @@
       const myForm = event.target;
       // @ts-ignore
       const formData = new FormData(myForm);
+      
+      // Ensure form-name is included (required by Netlify)
+      const params = new URLSearchParams();
+      for (const [key, value] of formData.entries()) {
+        params.append(key, value as string);
+      }
+      
+      console.log('Submitting form with fields:', Array.from(formData.entries()));
+      
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        // @ts-ignore
-        body: new URLSearchParams(formData).toString(),
+        body: params.toString(),
       })
 
       if (response.ok) {

@@ -35,8 +35,8 @@
       { "type": "text", "name": "name", "label": "Name", "required": true },
       { "type": "email", "name": "email", "label": "Email", "required": true },
       { "type": "tel", "name": "phone", "label": "Phone", "required": false },
-      { "type": "number", "name": "years-experience", "label": "Years of experience", "required": true },
-      { "type": "textarea", "name": "skills", "label": "Description of skills", "required": true }
+      { "type": "number", "name": "experience", "label": "Years of experience", "required": true },
+      { "type": "textarea", "name": "skills", "label": "message", "required": true }
     ]
   }
 } 

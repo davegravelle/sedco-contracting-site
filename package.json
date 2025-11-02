@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "generate:netlify-forms": "node scripts/generate-netlify-forms.js",
+    "build": "npm run generate:netlify-forms && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
