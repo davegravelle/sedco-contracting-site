@@ -1,0 +1,37 @@
+---
+interface Props {
+  direction: 'left' | 'right';
+}
+
+const { direction } = Astro.props;
+
+const buttonClass = direction === 'left' 
+  ? 'swiper-button-prev !left-5' 
+  : 'swiper-button-next !right-5';
+
+const pathData = direction === 'left'
+  ? 'M10.0002 11.9999L6 7.99971L10.0025 3.99719'
+  : 'M5.99984 4.00012L10 8.00029L5.99748 12.0028';
+---
+
+<button
+  id={`slider-button-${direction}`}
+  class={`${buttonClass} group after:!content-none !p-2 flex justify-center items-center !w-12 !h-12 transition-all duration-500 rounded-full !top-2/4 !-translate-y-8 bg-white/25 hover:bg-white/65`}
+>
+  <svg
+    class="h-5 w-5 text-primary text-white group-hover:text-gray-600 transition-all"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+  >
+    <path
+      d={pathData}
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>

@@ -1,0 +1,20 @@
+---
+import { getImage } from "astro:assets";
+
+interface Props {
+  image: ImageMetadata;
+  alt?: string;
+}
+
+const { image, alt } = Astro.props;
+const processedImage = await getImage({ src: image, format: 'webp' });
+---
+
+<div class="swiper-slide">
+  <div 
+    class="h-96 bg-center bg-cover bg-no-repeat" 
+    style={`background-image: url(${processedImage.src})`}
+    role="img" 
+    aria-label={alt || ""}
+  />
+</div> 

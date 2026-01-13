@@ -1,0 +1,73 @@
+---
+import CarouselSlide from "./CarouselSlide.astro";
+import CarouselButton from "./CarouselButton.astro";
+
+interface Props {
+  slides: {
+    image: ImageMetadata;
+    alt?: string;
+  }[];
+  pagination?: boolean,
+}
+
+const { slides, pagination } = Astro.props;
+---
+<style>
+  .swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    padding-bottom: 64px !important;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: var(--primary-dark) !important;
+  }
+
+</style>
+
+<div class="h-full">
+  <div class="swiper default-carousel swiper-container">
+    <div class="swiper-wrapper">
+      {slides.map((slide) => (
+        <CarouselSlide image={slide.image} alt={slide.alt} />
+      ))}
+    </div>
+    <div class="flex items-center gap-8 lg:justify-start justify-center">
+      <CarouselButton direction="left" />
+      <CarouselButton direction="right" />
+    </div>
+    {pagination && <div class="swiper-pagination"></div>}
+  </div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/navigation';
+  import 'swiper/css/pagination';
+
+  function initializeSwiper() {
+    new Swiper(".default-carousel", {
+      modules: [Navigation, Pagination],
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  }
+
+  // Initialize on page load
+  initializeSwiper();
+
+  // Re-initialize on view transitions
+  document.addEventListener('astro:page-load', initializeSwiper);
+</script> 

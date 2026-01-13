@@ -1,6 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 // custom
+import Layout from "../layouts/Layout.astro";
+import AnimatedWrapper from "../components/AnimatedWrapper.astro";
 // import Images from "../components/Images.astro";
 // import Hero from "../components/Hero.astro";
 import MainContent from "../components/MainContent.astro";
@@ -9,22 +11,32 @@ import MainContent from "../components/MainContent.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Card from "../components/Card.astro";
 
+import CardCarousel from "../components/CardCarousel.astro";
 
-// Import images directly
+// Tile Images
 import image1 from "../assets/kitchen-640.jpeg";
 import image2 from "../assets/landscaping1-640.jpg";
+
+// Kitchen Images
+import kitchen1 from "../assets/kitchen/30 rockaway finish.jpg";
+import kitchen2 from "../assets/kitchen/99 dick kitchen.jpg";
+import kitchen3 from "../assets/kitchen/99 dick kitchen 2.jpg";
+
+// Bathroom
+import bathroom1 from "../assets/bathroom/30 rockaway finish master bath.jpg";
+import bathroom2 from "../assets/bathroom/30 rockaway finish master bath vanities.jpg";
+import bathroom3 from "../assets/bathroom/34 rockaway bath 1.jpg";
+// Decks
+import deck1 from "../assets/decks/Carmita PT after.jpg";
+import deck2 from "../assets/decks/surf city front deck before .jpg";
+// Porches
+import porch1 from "../assets/porches/34 Rockaway wood porch after 520.jpg";
 
 const cards = [
   {
     subtitle: "Commercial and residential remodeling",
     title: "Sedco Contracting LLC",
-    list: [
-      "Kitchens",
-      "Bathrooms",
-      "Fireplaces",
-      "Decks & Porches",
-      "Garages",
-    ],
+    list: ["Kitchens", "Bathrooms", "Fireplaces", "Decks & Porches", "Garages"],
     href: "/services#remodeling",
     imgSrc: image1,
   },
@@ -42,11 +54,33 @@ const cards = [
     imgSrc: image2,
   },
 ];
+const carouselCards = [
+  {
+    title: "Kitchen & Baths",
+    href: "/services",
+    slides: [
+      { image: kitchen1, alt: "" },
+      { image: kitchen3, alt: "" },
+      { image: bathroom1, alt: "" },
+      { image: bathroom2, alt: "" },
+    ],
+  },
+  {
+    title: "Decks & Porches",
+    href: "/services",
+    slides: [
+      { image: deck1, alt: "" },
+      { image: porch1, alt: "" },
+      { image: deck2, alt: "" },
+    ],
+  },
+];
+const baseSectionClass = "px-4 py-8 sm:p-8";
 ---
 
 <Layout title="Home">
   <MainContent class="pt-0 pb-0 mb-12 max-w-screen-xl mx-auto bg-white">
-    <section class="px-4 py-8 sm:p-8 bg-white">
+    <section class={`${baseSectionClass} bg-white`}>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
         {
           cards.map((card) => (
@@ -57,17 +91,79 @@ const cards = [
         }
       </div>
     </section>
-
-    <section class="px-4 py-8 sm:p-8 bg-white">
-      <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
-        Get In Touch!
-      </h1>
-      <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
-        We're still working on the rest of our site but in the meantime we're
-        happy to answer any questions you have about our services. Fill out the
-        form below and we'll get back to you as soon as possible!
-      </p>
-      <ContactForm />
+    <!-- Gallery -->
+    <!-- <AnimatedWrapper>
+      <section class={`${baseSectionClass} bg-white my-8`}>
+        <h1 class="text-4xl text-primary-dark font-title text-center">
+          Kitchens & Baths
+        </h1>
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 mt-8">
+          {
+            [kitchen2, kitchen1, kitchen3].map((img) => (
+              <div class="col-span-1 sm:col-span-4">
+                <AnimatedWrapper>
+                  <Image src={img} alt="" />
+                </AnimatedWrapper>
+              </div>
+            ))
+          }
+          {
+            [bathroom2, bathroom1].map((img, i) => (
+              <div
+                class={`${i === 0 ? "col-span-1 sm:col-span-7 " : "col-span-1 sm:col-span-5"} sm:max-h-[500px] overflow-hidden`}
+              >
+                <AnimatedWrapper>
+                  <Image class="align-center" src={img} alt="" />
+                </AnimatedWrapper>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+    </AnimatedWrapper> -->
+    <!-- /Gallery -->
+    <section class=`${baseSectionClass} bg-white`>
+      <h2 class="text-primary-dark text-4xl text-center tracking-widest mb-8 font-title font-bold">Our Services</h2>
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          carouselCards.map((card) => (
+            <div class="col-span-1">
+              <AnimatedWrapper>
+                <CardCarousel {...card} />
+              </AnimatedWrapper>
+            </div>
+          ))
+        }
+      </div>
     </section>
+    <!-- <AnimatedWrapper>
+      <section class={`${baseSectionClass} bg-white my-8`}>
+        <h2 class="text-4xl text-primary-dark font-title text-center mb-8">Kitchens & Baths</h2>
+        <Carousel 
+          slides={[
+            { image: kitchen1, alt: "Kitchen remodel with modern finishes" },
+            { image: kitchen2, alt: "Spacious kitchen renovation" },
+            { image: kitchen3, alt: "Custom kitchen design" },
+            { image: bathroom1, alt: "Master bathroom renovation" },
+            { image: bathroom2, alt: "Modern bathroom vanity installation" },
+            { image: bathroom3, alt: "Complete bathroom remodel" }
+          ]}
+        />
+      </section>
+    </AnimatedWrapper> -->
+
+    <AnimatedWrapper>
+      <section class={`${baseSectionClass} bg-white`}>
+        <h1 class="text-3xl text-center font-bold text-primary-dark mb-8">
+          Get In Touch!
+        </h1>
+        <p class="max-w-md mx-auto text-primary-dark text-center mb-8">
+          We're still working on the rest of our site but in the meantime we're
+          happy to answer any questions you have about our services. Fill out
+          the form below and we'll get back to you as soon as possible!
+        </p>
+        <ContactForm />
+      </section>
+    </AnimatedWrapper>
   </MainContent>
 </Layout>

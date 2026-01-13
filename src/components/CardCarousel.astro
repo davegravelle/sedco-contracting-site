@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import Carousel from "./Carousel/Carousel.astro";
+
+export interface CardCarouselProps {
+  title: string;
+  subtitle: string;
+  href: string;
+  slides: {
+    image: ImageMetadata;
+    alt: string;
+  }[];
+}
+
+const { title, subtitle, href, slides } = Astro.props;
+---
+
+<div class="text-white">
+  {title && (
+    <div class="bg-gradient-to-b from-black/50 from-60% to-transparent absolute top-0 w-full pt-4 pb-12 z-10">
+      <a href={href} class="mb-0">
+        <h2 class="text-4xl sm:text-2xl text-center font-title tracking-wide">
+          {title}
+        </h2>
+      </a>
+    </div>
+  )}
+
+  <Carousel slides={slides} />
+</div>
